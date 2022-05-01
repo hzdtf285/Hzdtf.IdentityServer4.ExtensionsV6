@@ -1,0 +1,891 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hzdtf.Utility.AspNet</name>
+    </assembly>
+    <members>
+        <member name="T:Hzdtf.Utility.AspNet.Config.ConfigSourceType">
+            <summary>
+            配置来源类型
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Config.ConfigSourceType.JSON_FILE">
+            <summary>
+            JSON文件
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Config.ConfigSourceType.MICROSOFT_CONFIGURATION">
+            <summary>
+            微软配置
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1">
+            <summary>
+            Json文件微软配置基类
+            @ 黄振东
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1.configuration">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1.beforeConfigurationBuilder">
+            <summary>
+            配置生成前回调
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1.#ctor(System.String,System.Action{Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Object})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="jsonFile">json文件</param>
+            <param name="beforeConfigurationBuilder">配置生成前回调</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1.#ctor(`0,System.Action{Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Object})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="data">数据</param>
+            <param name="beforeConfigurationBuilder">配置生成前回调</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1.Reader">
+            <summary>
+            读取
+            </summary>
+            <returns>数据</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Config.JsonFileMicrosoftConfigurationBase`1.WriteToStorage(`0)">
+            <summary>
+            写入到存储里
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware">
+            <summary>
+            文化中间件
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware.next">
+            <summary>
+            下一个中间件处理委托
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="next">下一个中间件处理委托</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="context">http上下文</param>
+            <returns>任务</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware.GetDefaultCulture">
+            <summary>
+            获取默认的语言文化
+            </summary>
+            <returns>默认的语言文化</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware">
+            <summary>
+            API异常处理中间件
+            只有对路径是从传过来的配置前辍才处理
+            会对下一个中间件捕获异常，如果发生异常，会返回BasicReturnInfo对象
+            对于BusinessException业务异常则不会记录日志，会返回BasicReturnInfo对象
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware.next">
+            <summary>
+            下一个中间件处理委托
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware.options">
+            <summary>
+            Api异常处理选项配置
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware.log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions},Hzdtf.Logger.Contract.ILogable)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="next">下一个中间件处理委托</param>
+            <param name="options">Api异常处理选项配置</param>
+            <param name="log">日志</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="context">http上下文</param>
+            <returns>任务</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleMiddleware.WriteReturnInfo(Microsoft.AspNetCore.Http.HttpContext,Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions,Hzdtf.Utility.Model.Return.BasicReturnInfo)">
+            <summary>
+            写入返回信息
+            </summary>
+            <param name="context">http上下文</param>
+            <param name="options">Api异常处理选项配置</param>
+            <param name="reInfo">返回信息</param>
+            <returns>任务</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions">
+            <summary>
+            Api异常处理选项配置
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.IsDevelopment">
+            <summary>
+            是否开发环境
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.PfxApiPath">
+            <summary>
+            Api路径前辍，默认是/api/
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.Serialization">
+            <summary>
+            序列化，默认为Json
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.ExceptionCode">
+            <summary>
+            异常编码，默认为500
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.ExceptionMsg">
+            <summary>
+            异常消息，默认为“操作失败”
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.HttpStatusCode">
+            <summary>
+            Http状态码，默认返回200
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.IHttpContextAuthToken">
+            <summary>
+            Http上下文授权票据接口
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.IHttpContextAuthToken.SetHttpContext(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            设置Http上下文
+            </summary>
+            <param name="context">Http上下文</param>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration">
+            <summary>
+            统一服务配置来自微软配置对象里
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.services">
+            <summary>
+            服务配置数组，目的是为了从配置里读取时，能将部分对象还原
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.syncServices">
+            <summary>
+            同步服务配置列表
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.#ctor(System.Action{Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Object})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="beforeConfigurationBuilder">配置生成前回调</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.#ctor(System.String,System.Action{Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Object})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="jsonFile">json文件</param>
+            <param name="beforeConfigurationBuilder">配置生成前回调</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.#ctor(Hzdtf.Utility.RemoteService.Options.UnityServicesOptions,System.Action{Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Object})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="options">配置</param>
+            <param name="beforeConfigurationBuilder">配置生成前回调</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.Reader">
+            <summary>
+            读取
+            </summary>
+            <returns>数据</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.WriteToStorage(Hzdtf.Utility.RemoteService.Options.UnityServicesOptions)">
+            <summary>
+            写入到存储里
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration.SetServiceOptions(Hzdtf.Utility.RemoteService.Options.ServicesOptions[])">
+            <summary>
+            设置服务配置数组
+            </summary>
+            <param name="services">服务配置数组</param>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware">
+            <summary>
+            请求日志中间件
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware.next">
+            <summary>
+            下一个中间件处理委托
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware.options">
+            <summary>
+            请求日志选项配置
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware.log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware.theOperation">
+            <summary>
+            本次操作
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogOptions},Hzdtf.Logger.Contract.ILogable,Hzdtf.Utility.TheOperation.ITheOperation)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="next">下一个中间件处理委托</param>
+            <param name="options">请求日志选项配置</param>
+            <param name="log">日志</param>
+            <param name="theOperation">本次操作</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="context">http上下文</param>
+            <returns>任务</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogOptions">
+            <summary>
+            请求日志选项
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogOptions.LogLevel">
+            <summary>
+            日志等级，默认是Trace
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase">
+            <summary>
+            路由权限中间件基类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.next">
+            <summary>
+            下一个中间件处理委托
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.reader">
+            <summary>
+            读取API权限配置
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.options">
+            <summary>
+            API权限选项配置
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.localize">
+            <summary>
+            本地化
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.theOperation">
+            <summary>
+            本次操作
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions},Hzdtf.Utility.RoutePermission.IRoutePermissionReader,Hzdtf.Utility.Localization.ILocalization,Hzdtf.Utility.TheOperation.ITheOperation)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="next">下一个中间件处理委托</param>
+            <param name="options">路由权限选项配置</param>
+            <param name="reader">读取API权限配置</param>
+            <param name="localize">本地化</param>
+            <param name="theOperation">本次操作</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="context">http上下文</param>
+            <returns>任务</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.IsHavePermission(Microsoft.AspNetCore.Http.HttpContext,Hzdtf.Utility.RoutePermission.RoutePermissionInfo,Hzdtf.Utility.RoutePermission.RoutePermissionInfo.ActionInfo,Hzdtf.Utility.Model.Return.BasicReturnInfo)">
+            <summary>
+            判断是否拥有权限
+            </summary>
+            <param name="context">上下文</param>
+            <param name="controller">控制器信息</param>
+            <param name="action">动作信息</param>
+            <param name="basicReturn">基本返回</param>
+            <returns>获取是否拥有权限</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.NotPermissionHandle(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            无权限处理
+            </summary>
+            <param name="context">http上下文</param>
+            <returns>任务</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionMiddlewareBase.WriteContent(Microsoft.AspNetCore.Http.HttpContext,Hzdtf.Utility.Model.Return.BasicReturnInfo)">
+            <summary>
+            写入内容
+            </summary>
+            <param name="context">http上下文</param>
+            <param name="basicReturn">基本返回</param>
+            <returns>任务</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions">
+            <summary>
+            路由权限选项配置
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions.PfxApiPath">
+            <summary>
+            Api路径前辍，默认是/api/
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions.ConfigReader">
+            <summary>
+            配置读取
+            可以设置Hzdtf.Utility.RoutePermission.RoutePermissionJson、Hzdtf.Utility.RoutePermission.RoutePermissionAssembly
+            默认为RoutePermissionJson
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationMiddleware">
+            <summary>
+            本次请求操作中间件
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationMiddleware.next">
+            <summary>
+            下一个中间件处理委托
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationMiddleware.theOperation">
+            <summary>
+            本次操作
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationMiddleware.options">
+            <summary>
+            本次请求操作选项配置
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Hzdtf.Utility.TheOperation.ITheOperation,Microsoft.Extensions.Options.IOptions{Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationOptions})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="next">下一个中间件处理委托</param>
+            <param name="theOperation">本次操作</param>
+            <param name="options">本次请求操作选项配置</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="context">http上下文</param>
+            <returns>任务</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationOptions">
+            <summary>
+            本次操作选项配置
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationOptions.PfxApiPath">
+            <summary>
+            Api路径前辍，默认是/api/
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.ModelValidate.ModelValidateActionFilter">
+            <summary>
+            模型验证动作过滤器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.ModelValidate.ModelValidateActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            动作执行中
+            </summary>
+            <param name="context">上下文</param>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.ModelValidate.ModelValidateActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            动作执行完
+            </summary>
+            <param name="context">上下文</param>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.ModelValidate.NullObjectModelValidator">
+            <summary>
+            对象可为null的模型验证
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.AspNet.ModelValidate.NullObjectModelValidator.Validate(Microsoft.AspNetCore.Mvc.ActionContext,Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationStateDictionary,System.String,System.Object)">
+            <summary>
+            验证
+            </summary>
+            <param name="actionContext">动作上下文</param>
+            <param name="validationState">验证状态</param>
+            <param name="prefix">前辍</param>
+            <param name="model">模型</param>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.CultureMiddlewareExtensions">
+            <summary>
+            文化中间件扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.CultureMiddlewareExtensions.UseCulture(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            使用文化
+            </summary>
+            <param name="app">应用</param>
+            <param name="defaultCulture">默认文化</param>
+            <returns>应用</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.ApiExceptionHandleMiddlewareExtensions">
+            <summary>
+            Api异常处理中间件扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.ApiExceptionHandleMiddlewareExtensions.UseApiExceptionHandle(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用Api异常处理
+            </summary>
+            <param name="app">应用</param>
+            <returns>应用</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.HashIpPortLoadBalanceMiddlewareExtensions">
+            <summary>
+            哈希+IP中间件拓展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Builder.HashIpPortLoadBalanceMiddlewareExtensions.localPort">
+            <summary>
+            本地端口
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.HashIpPortLoadBalanceMiddlewareExtensions.UseHashIpPortLoadBalance(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Int32)">
+            <summary>
+            使用哈希+IP负载均衡
+            </summary>
+            <param name="app">应用生成器</param>
+            <param name="port">端口</param>
+            <returns>应用生成器</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.RequestLogMiddlewareExtensions">
+            <summary>
+            请求日志中间件扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.RequestLogMiddlewareExtensions.UseRequestLog(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用请求日志
+            </summary>
+            <param name="app">应用</param>
+            <returns>应用</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.RoutePermissionMiddlewareExtensions">
+            <summary>
+            路由权限中间件扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.RoutePermissionMiddlewareExtensions.UseRoutePermission``1(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用路由权限，必须在UseRouting中间件后面执行
+            </summary>
+            <param name="app">应用</param>
+            <returns>应用</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Builder.TheReuestOperationMiddlewareExtensions">
+            <summary>
+            本次请求操作中间件扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.TheReuestOperationMiddlewareExtensions.UseTheReuestOperation(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用本次请求操作
+            </summary>
+            <param name="app">应用</param>
+            <returns>应用</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Http.CurrentCultureExtensions">
+            <summary>
+            当前文化扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.CurrentCultureExtensions.SetCurrentCulture(Microsoft.AspNetCore.Http.HttpContext,System.String,System.Int32)">
+            <summary>
+            设置当前语言文化，使用的是Cookies存储，使用之前必须启用Cookies
+            </summary>
+            <param name="context">上下文</param>
+            <param name="culture">文化</param>
+            <param name="expireDay">过期天数，默认为30天</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.CurrentCultureExtensions.GetCurrentCulture(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取当前语言文化，使用的是Cookies存储，使用之前必须启用Cookies
+            </summary>
+            <param name="context">上下文</param>
+            <returns>文化</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Http.HttpContextExtensions">
+            <summary>
+            http上下文扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpContextExtensions.GetContextKey(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取上下文键
+            </summary>
+            <param name="context">上下文</param>
+            <returns>上下文键</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpContextExtensions.CreateCommonUseData(Microsoft.AspNetCore.Http.HttpContext,Hzdtf.Utility.Factory.ISimpleFactory{Microsoft.AspNetCore.Http.HttpContext,Hzdtf.Utility.Model.CommonUseData},System.String,System.String,System.String[])">
+            <summary>
+            创建通用数据
+            </summary>
+            <param name="context">上下文</param>
+            <param name="factory">通用数据工厂</param>
+            <param name="key">键</param>
+            <param name="menuCode">菜单编码</param>
+            <param name="functionCodes">功能编码数组</param>
+            <returns>通用数据</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpContextExtensions.CreateBasicCommonUseData(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String,Hzdtf.Utility.Model.IAuthToken,System.String[])">
+            <summary>
+            创建基本的通用数据
+            </summary>
+            <param name="context">上下文</param>
+            <param name="key">键</param>
+            <param name="menuCode">菜单编码</param>
+            <param name="authToken">授权票据</param>
+            <param name="functionCodes">功能编码数组</param>
+            <returns>基本的通用数据</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Http.HttpRequestExtensions">
+            <summary>
+            HTTP请求扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpRequestExtensions.GetBearerOriginTokenFromHeader(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            从请求头里获取原始的票据
+            </summary>
+            <param name="request">http请求</param>
+            <returns>原始的票据</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpRequestExtensions.GetContainerBearerOriginTokenFromHeader(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            从请求头里获取带有Bearer的票据
+            </summary>
+            <param name="request">http请求</param>
+            <returns>带有Bearer的票据</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpRequestExtensions.GetEventId(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            获取事件ID，如果header不存在则新创建
+            </summary>
+            <param name="request">http请求</param>
+            <returns>事件ID</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpRequestExtensions.GetClientRequestIP(Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            获取客户端请求IP
+            </summary>
+            <param name="request">http请求</param>
+            <returns>客户端请求IP</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Http.HttpResponseExtensions">
+            <summary>
+            Http响应扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.HttpResponseExtensions.AddCorsCookieHeader(Microsoft.AspNetCore.Http.HttpResponse)">
+            <summary>
+            为跨域Cookie添加必要的头
+            </summary>
+            <param name="response">http响应</param>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Http.QueryCollectionExtensions">
+            <summary>
+            查询收藏扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Http.QueryCollectionExtensions.ToDictionary(Microsoft.AspNetCore.Http.IQueryCollection,System.String[])">
+            <summary>
+            转换为字典
+            </summary>
+            <param name="query">查询收藏</param>
+            <param name="ignoreKeys">忽略键数组</param>
+            <returns>字典</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Routing.RouteValueDictionaryExtensions">
+            <summary>
+            路由值字典扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Routing.RouteValueDictionaryExtensions.GetControllerAction(Microsoft.AspNetCore.Routing.RouteValueDictionary)">
+            <summary>
+            获取控制器和动作
+            </summary>
+            <param name="keyValues">路由字典</param>
+            <returns>控制器和动作，0:控制器;1:动作</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ApiExceptionHandleServiceExtensions">
+            <summary>
+            Api异常处理服务扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ApiExceptionHandleServiceExtensions.AddApiExceptionHandle(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions})">
+            <summary>
+            添加Api异常处理服务
+            </summary>
+            <param name="services">服务收藏</param>
+            <param name="options">Api异常处理选项配置</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.GRpcClientExtensions">
+            <summary>
+            GRpc客户端扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.GRpcClientExtensions.AddGrpcDefaultResolver(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加GRpc默认地址解析（静态）
+            地址解析：从App.Instance获取IGRpcServiceAddReader
+            </summary>
+            <param name="services">服务收藏</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.GRpcClientExtensions.AddGrpcClientAndDefaultBalancing``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Action{Grpc.Net.ClientFactory.GrpcClientFactoryOptions})">
+            <summary>
+            添加GRpc客户端并且设置默认负载均衡策略（轮询）
+            </summary>
+            <typeparam name="GRpcClientT">GRpc客户端类型</typeparam>
+            <param name="serviceName">服务名</param>
+            <param name="services">服务收藏</param>
+            <param name="options">配置回调</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.JsonSerializerOptionsExtensioins">
+            <summary>
+            Json序列化选项扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.JsonSerializerOptionsExtensioins.AddDefaultJsonOptions(Microsoft.Extensions.DependencyInjection.IMvcBuilder,System.Action{Microsoft.AspNetCore.Mvc.JsonOptions},System.Boolean)">
+            <summary>
+            添加默认的JSON选项
+            </summary>
+            <param name="builder">MVC生成器</param>
+            <param name="jsonOptions">JSON配置回调</param>
+            <param name="isTransBeiJingTimeZone">是否转换为北京时区。如果日期时间遇到后面带有z（代表0时区），则会转换为北京时间（+8H）。默认为否</param>
+            <returns>MVC生成器</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.HashIpPortLoadBalanceExtensions">
+            <summary>
+            哈希+IP负载均衡扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.HashIpPortLoadBalanceExtensions.AddHashIpPortLoadBalance(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加哈希+IP负载均衡
+            </summary>
+            <param name="services">服务</param>
+            <returns>服务</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.RegisterAssemblyExtensions">
+            <summary>
+            注册程序集扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.RegisterAssemblyExtensions.RegisterAssembly(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.String,Microsoft.Extensions.DependencyInjection.ServiceLifetime,System.Func{System.Type,System.Boolean})">
+            <summary>
+            用DI批量注入接口程序集中对应的实现类
+            </summary>
+            <param name="service">服务收藏</param>
+            <param name="interfaceAssemblyName">接口程序集的名称（不包含文件扩展名）</param>
+            <param name="implementAssemblyName">实现程序集的名称（不包含文件扩展名）</param>
+            <param name="lifecycle">生命周期，默认为瞬时</param>
+            <param name="interfacTypeCallback">接口类型回调，key：接口类型；value：是否忽略</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.RegisterAssemblyExtensions.RegisterAssemblyWithInterfaceMapImpls(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime,System.String[])">
+            <summary>
+            用DI批量注入批定接口类型的实现类程序集中的实现类
+            </summary>
+            <param name="service">服务收藏</param>
+            <param name="interfaceType">接口类型</param>
+            <param name="lifecycle">生命周期，默认为瞬时</param>
+            <param name="implClassAssemblys">接口程序集的名称（不包含文件扩展名）</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.UnityServicesBuilderExtensions">
+            <summary>
+            统一服务生成器扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.UnityServicesBuilderExtensions.AddUnityServicesBuilderCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.RemoteService.UnitServiceBuilderOptions})">
+            <summary>
+            添加统一服务生成器缓存
+            </summary>
+            <param name="services">服务</param>
+            <param name="options">配置回调</param>
+            <returns>服务</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.UnityServicesBuilderExtensions.AddUnityServicesBuilderConfigure(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.RemoteService.UnitServiceBuilderOptions},System.Action{Microsoft.Extensions.Configuration.IConfigurationBuilder,System.String,System.Object})">
+            <summary>
+            添加统一服务生成器微软配置
+            </summary>
+            <param name="services">服务</param>
+            <param name="options">配置回调</param>
+            <param name="beforeConfigBuilder">生成配置前回调</param>
+            <returns>服务</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.UnityServicesBuilderExtensions.AddUnityServicesBuilder(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{Hzdtf.Utility.RemoteService.UnitServiceBuilderOptions,Hzdtf.Utility.RemoteService.Options.IUnityServicesOptions},System.Action{Hzdtf.Utility.RemoteService.UnitServiceBuilderOptions})">
+            <summary>
+            添加统一服务生成器
+            </summary>
+            <param name="services">服务</param>
+            <param name="callbackServiceOptions">回调服务配置</param>
+            <param name="options">配置回调</param>
+            <returns>服务</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.RequestLogServiceExtensions">
+            <summary>
+            请求日志扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.RequestLogServiceExtensions.AddRequestLog(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogOptions})">
+            <summary>
+            添加请求日志服务
+            </summary>
+            <param name="services">服务收藏</param>
+            <param name="options">请求日志选项配置</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.RoutePermissionServiceExtensions">
+            <summary>
+            路由权限扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.RoutePermissionServiceExtensions.AddRoutePermission(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions})">
+            <summary>
+            添加路由权限服务
+            </summary>
+            <param name="services">服务收藏</param>
+            <param name="options">路由权限选项配置</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.TheReuestOperationServiceExtensions">
+            <summary>
+            本次请求操作服务扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.TheReuestOperationServiceExtensions.AddTheReuestOperation(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.TheReuestOperation.TheReuestOperationOptions})">
+            <summary>
+            添加本次请求操作服务
+            </summary>
+            <param name="services">服务收藏</param>
+            <param name="options">Api异常处理选项配置</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Grpc.Core.Interceptors.GRpcRequestLogInterceptor">
+            <summary>
+            GRpc请求日志拦截器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Grpc.Core.Interceptors.GRpcRequestLogInterceptor.options">
+            <summary>
+            请求日志选项配置
+            </summary>
+        </member>
+        <member name="F:Grpc.Core.Interceptors.GRpcRequestLogInterceptor.log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="F:Grpc.Core.Interceptors.GRpcRequestLogInterceptor.theOperation">
+            <summary>
+            本次操作
+            </summary>
+        </member>
+        <member name="M:Grpc.Core.Interceptors.GRpcRequestLogInterceptor.#ctor(Microsoft.Extensions.Options.IOptions{Hzdtf.Utility.AspNet.Extensions.RequestLog.RequestLogOptions},Hzdtf.Logger.Contract.ILogable,Hzdtf.Utility.TheOperation.ITheOperation)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="options">请求日志选项配置</param>
+            <param name="log">日志</param>
+            <param name="theOperation">本次操作</param>
+        </member>
+        <member name="M:Grpc.Core.Interceptors.GRpcRequestLogInterceptor.UnaryServerHandler``2(``0,Grpc.Core.ServerCallContext,Grpc.Core.UnaryServerMethod{``0,``1})">
+            <summary>
+            服务端处理
+            </summary>
+            <typeparam name="TRequest">请求类型</typeparam>
+            <typeparam name="TResponse">响应类型</typeparam>
+            <param name="request">请求对象</param>
+            <param name="context">服务回调上下文</param>
+            <param name="continuation">服务方法</param>
+            <returns>响应任务</returns>
+        </member>
+    </members>
+</doc>

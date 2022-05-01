@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="1.6.10.5" />
+    <PackageReference Include="MessagePack.Annotations" Version="2.3.85" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.4" NoWarn="NU1605" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Hzdtf.Consul.ConfigCenter.AspNet">
+      <HintPath>..\..\Library\Hzdtf.Consul.ConfigCenter.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Hzdtf.Consul.Extensions.AspNet">
+      <HintPath>..\..\Library\Hzdtf.Consul.Extensions.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Hzdtf.Consul.Extensions.Common">
+      <HintPath>..\..\Library\Hzdtf.Consul.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Hzdtf.Logger.Contract">
+      <HintPath>..\..\Library\Hzdtf.Logger.Contract.dll</HintPath>
+    </Reference>
+    <Reference Include="Hzdtf.Mini">
+      <HintPath>..\..\Library\Hzdtf.Mini.dll</HintPath>
+    </Reference>
+    <Reference Include="Hzdtf.Utility">
+      <HintPath>..\..\Library\Hzdtf.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Hzdtf.Utility.AspNet">
+      <HintPath>..\..\Library\Hzdtf.Utility.AspNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
