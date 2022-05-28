@@ -732,6 +732,26 @@
             标签
             </summary>
         </member>
+        <member name="P:Hzdtf.Utility.Attr.TransactionAttribute.BeforeMethod">
+            <summary>
+            执行事务方法前的方法名
+            方法名必须是public
+            用法主要在事务开启之前，需要从持久化读取数据，而读取数据一般不需要加入事务，因为一旦读取加入事务，在事务完成之前会锁定读取的数据范围，影响性能
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Attr.TransactionAttribute.BeforeMethodUseCache">
+            <summary>
+            执行事务方法前的方法是否使用缓存
+            如果使用的单实例，建议使用以提高性能。否则不需要使用
+            默认为否
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Attr.TransactionAttribute.BeforeMethodReturnValueInIndex">
+            <summary>
+            执行方法前的方法返回值输入位置索引
+            默认为-1，为-1时，表示方法没有返回值
+            </summary>
+        </member>
         <member name="P:Hzdtf.Utility.Attr.TransactionAttribute.CommonUseDataIndex">
             <summary>
             通用使用数据位置索引
