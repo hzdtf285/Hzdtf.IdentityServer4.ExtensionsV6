@@ -2921,6 +2921,27 @@
             在全局范围内共享实例
             </summary>
         </member>
+        <member name="T:Hzdtf.Utility.Enums.LikeMode">
+            <summary>
+            Like模式
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Enums.LikeMode.LEFT_EQUAL">
+            <summary>
+            左匹配。相当于like '{value}%'
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Enums.LikeMode.RIGHT">
+            <summary>
+            右匹配。相当于like '%{value}'
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Enums.LikeMode.FULL_BLUR">
+            <summary>
+            全模糊，相当于like '%{value}%'
+            </summary>
+        </member>
         <member name="T:Hzdtf.Utility.Enums.SortType">
             <summary>
             排序类型
@@ -8655,6 +8676,14 @@
             <param name="field">字段</param>
             <param name="isEqual">是否匹配，默认为是</param>
             <returns>掩码SQL</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.SqlUtil.GetLikeSql(System.String,Hzdtf.Utility.Enums.LikeMode)">
+            <summary>
+            获取Like SQL语句
+            </summary>
+            <param name="value">值</param>
+            <param name="mode">模式</param>
+            <returns>Like SQL语句</returns>
         </member>
         <member name="T:Hzdtf.Utility.Utils.StreamUtil">
             <summary>

@@ -19,14 +19,14 @@
           "Hzdtf.Consul.ConfigCenter.AspNet.dll": {}
         }
       },
-      "Consul/1.6.10.5": {
+      "Consul/1.6.10.6": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
           "lib/netstandard2.0/Consul.dll": {
-            "assemblyVersion": "1.6.10.5",
-            "fileVersion": "1.6.10.5"
+            "assemblyVersion": "1.6.10.6",
+            "fileVersion": "1.6.10.6"
           }
         }
       },
@@ -108,7 +108,7 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "Winton.Extensions.Configuration.Consul/3.2.0": {
         "dependencies": {
-          "Consul": "1.6.10.5",
+          "Consul": "1.6.10.6",
           "Microsoft.Extensions.Configuration": "3.0.0",
           "Microsoft.Extensions.Configuration.Json": "3.0.0"
         },
@@ -130,7 +130,7 @@
       },
       "Hzdtf.Consul.Extensions.Common/6.0.0": {
         "dependencies": {
-          "Consul": "1.6.10.5",
+          "Consul": "1.6.10.6",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Newtonsoft.Json": "13.0.1"
         },
@@ -178,12 +178,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Consul/1.6.10.5": {
+    "Consul/1.6.10.6": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bHZeWce/klIPjqLNYqZHYIIjMnClLQE+/KJPzZlVo2J+APr4uuJghP6rax/WMB6SuI/oofbc2T046Q9+Zy/i5g==",
-      "path": "consul/1.6.10.5",
-      "hashPath": "consul.1.6.10.5.nupkg.sha512"
+      "sha512": "sha512-Rt0uQw8f8wtRDwp1B5NIemC094jbkOv3b3Jzy9HOc0FIAJhMEaSRpcZCzjLGKMvPAfw7TKxy07CiYMNXvbMARA==",
+      "path": "consul/1.6.10.6",
+      "hashPath": "consul.1.6.10.6.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
       "type": "package",

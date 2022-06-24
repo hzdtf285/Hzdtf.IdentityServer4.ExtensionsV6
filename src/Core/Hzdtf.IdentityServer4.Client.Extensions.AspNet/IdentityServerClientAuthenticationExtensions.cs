@@ -75,6 +75,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// 添加身份认证Cookie Oidc
         /// </summary>
         /// <param name="services">服务收藏</param>
+        /// <param name="config">配置</param>
         /// <returns>身份认证生成器</returns>
         private static AuthenticationBuilder AddAuthenticationCookieOidc(this IServiceCollection services, AuthenticationCookieOidcOptions config)
         {
