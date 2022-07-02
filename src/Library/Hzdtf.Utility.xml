@@ -10867,11 +10867,12 @@
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.SetRobinBalancingAndStaticResolver(Grpc.Net.ClientFactory.GrpcClientFactoryOptions,System.String)">
+        <member name="M:Grpc.Net.Client.GRpcChannelUtil.SetRobinBalancingAndStaticResolver(Grpc.Net.ClientFactory.GrpcClientFactoryOptions,System.String,System.Action{Grpc.Net.Client.GrpcChannelOptions})">
             <summary>
             设置轮询负载均衡策略和静态解析
             </summary>
             <param name="options">GRpc工厂选项配置</param>
+            <param name="callbackChannelOptions">回调GRpc渠道选项配置</param>
             <param name="service">服务</param>
         </member>
         <member name="M:Grpc.Net.Client.GRpcChannelUtil.ExecGRpcClient``1(``0,System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
