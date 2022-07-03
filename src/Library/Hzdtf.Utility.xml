@@ -10867,6 +10867,16 @@
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>
         </member>
+        <member name="M:Grpc.Net.Client.GRpcChannelUtil.GetGRpcClientAsync``1(System.Func{``0,Grpc.Core.Metadata,System.Threading.Tasks.Task},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
+            <summary>
+            异步获取GRpc客户端
+            </summary>
+            <typeparam name="GRpcClientT">GRpc客户端类型</typeparam>
+            <param name="func">回调业务处理方法</param>
+            <param name="exAction">发生异常回调，如果为null，则不会捕获异常</param>
+            <param name="customerOptions">自定义选项配置</param>
+            <returns>GRpc客户端</returns>
+        </member>
         <member name="M:Grpc.Net.Client.GRpcChannelUtil.SetRobinBalancingAndStaticResolver(Grpc.Net.ClientFactory.GrpcClientFactoryOptions,System.String,System.Action{Grpc.Net.Client.GrpcChannelOptions})">
             <summary>
             设置轮询负载均衡策略和静态解析
@@ -10883,6 +10893,18 @@
             <typeparam name="GRpcClientT">GRpc客户端类型</typeparam>
             <param name="client">客户端</param>
             <param name="action">回调业务处理方法</param>
+            <param name="exAction">发生异常回调，如果为null，则不会捕获异常</param>
+            <param name="customerOptions">自定义选项配置</param>
+            <returns>GRpc客户端</returns>
+        </member>
+        <member name="M:Grpc.Net.Client.GRpcChannelUtil.ExecGRpcClientAsync``1(``0,System.Func{``0,Grpc.Core.Metadata,System.Threading.Tasks.Task},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
+            <summary>
+            异步执行GRpc客户端
+            需要在App.GetGRpcClient里设置获取GRpc客户端工厂的实现
+            </summary>
+            <typeparam name="GRpcClientT">GRpc客户端类型</typeparam>
+            <param name="client">客户端</param>
+            <param name="func">回调业务处理方法</param>
             <param name="exAction">发生异常回调，如果为null，则不会捕获异常</param>
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>

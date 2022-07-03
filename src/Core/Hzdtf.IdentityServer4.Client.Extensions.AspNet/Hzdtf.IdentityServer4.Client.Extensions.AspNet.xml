@@ -32,6 +32,7 @@
             添加身份认证Cookie Oidc
             </summary>
             <param name="services">服务收藏</param>
+            <param name="config">配置</param>
             <returns>身份认证生成器</returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.IdentityServerClientAuthenticationExtensions.UseAuthenticationCookieOidc(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
