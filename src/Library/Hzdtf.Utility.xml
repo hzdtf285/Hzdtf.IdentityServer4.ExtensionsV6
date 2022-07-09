@@ -4362,9 +4362,19 @@
             排序
             </summary>
         </member>
+        <member name="F:Hzdtf.Utility.Model.FilterInfo.sortName">
+            <summary>
+            排名名称
+            </summary>
+        </member>
         <member name="P:Hzdtf.Utility.Model.FilterInfo.SortName">
             <summary>
             排序名称
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Model.FilterInfo.LimitSortNames">
+            <summary>
+            限定排序名称数组。不区分大小写。如果有限定范围，请重写此属性
             </summary>
         </member>
         <member name="T:Hzdtf.Utility.Model.FunCodeDefine">
