@@ -9725,6 +9725,10 @@
             日期时间扩展类
             @ 黄振东
             </summary>
+            <summary>
+            日期时间扩展类
+            @ 黄振东
+            </summary>
         </member>
         <member name="F:System.DateTimeExtensions.MAX_DATE">
             <summary>
@@ -10148,6 +10152,45 @@
             <param name="currDepth">当前深度</param>
             <param name="depth">深度</param>
             <param name="obj">对象</param>
+        </member>
+        <member name="F:System.DateTimeExtensions.CallbackDefaultNow">
+            <summary>
+            默认当前日期时间回调
+            </summary>
+        </member>
+        <member name="P:System.DateTimeExtensions.Now">
+            <summary>
+            当前日期时间
+            如果CallbackDefaultNow不为null，则会调用CallbackDefaultNow作为当前日期时间；否则调用CstNow()
+            </summary>
+            <returns>日期时间</returns>
+        </member>
+        <member name="M:System.DateTimeExtensions.GetCstDateTime(NodaTime.Instant)">
+            <summary>
+            获取CST日期时间（统一的日期时间，默认为上海时区）
+            </summary>
+            <param name="instant">片刻对象</param>
+            <returns>CST日期时间</returns>
+        </member>
+        <member name="M:System.DateTimeExtensions.CstNow">
+            <summary>
+            获取CST当前日期时间（统一的日期时间，默认为上海时区）
+            </summary>
+            <returns>CST当前日期时间</returns>
+        </member>
+        <member name="M:System.DateTimeExtensions.ToCstDateTime(System.DateTime)">
+            <summary>
+            将原始日期时间转换为CST日期时间（统一的日期时间，默认为上海时区）
+            </summary>
+            <param name="dateTime">日期时间</param>
+            <returns>CST日期时间</returns>
+        </member>
+        <member name="M:System.DateTimeExtensions.ToCstDateTime(System.String)">
+            <summary>
+            将原始日期时间字符串转换为CST日期时间（统一的日期时间，默认为上海时区）
+            </summary>
+            <param name="dateTimeStr">日期时间字符串</param>
+            <returns>CST日期时间</returns>
         </member>
         <member name="T:System.ExceptionExtensions">
             <summary>
