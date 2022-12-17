@@ -238,6 +238,11 @@
             事件ID键
             </summary>
         </member>
+        <member name="F:Hzdtf.Utility.App.CLIENT_REMOTE_IP_HEAD_KEY">
+            <summary>
+            客户端远程IP头键
+            </summary>
+        </member>
         <member name="F:Hzdtf.Utility.App.GetTokenFunc">
             <summary>
             获取token回调
@@ -273,6 +278,12 @@
             从当前服务提供者实例获取服务
             </summary>
             <typeparam name="T">服务类型</typeparam>
+            <returns>服务</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.App.GetServiceFromInstance(System.Type)">
+            <summary>
+            从当前服务提供者实例获取服务
+            </summary>
             <returns>服务</returns>
         </member>
         <member name="M:Hzdtf.Utility.App.ServiceInstanceNotNullExecute(System.Action,System.UInt16,System.Byte)">
@@ -318,11 +329,6 @@
             缓存键
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.AsyncCallbackWrap.AsyncReleaseWrap`1.syncDicCaches">
-            <summary>
-            同步缓存键
-            </summary>
-        </member>
         <member name="M:Hzdtf.Utility.AsyncCallbackWrap.AsyncReleaseWrap`1.Wait(`0,System.Nullable{System.TimeSpan})">
             <summary>
             等待
@@ -353,12 +359,6 @@
             获取缓存对象
             </summary>
             <returns>缓存对象</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.AsyncCallbackWrap.AsyncReleaseWrap`1.GetSyncCache">
-            <summary>
-            获取同步缓存对象
-            </summary>
-            <returns>同步缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.AsyncCallbackWrap.AutoResetReturnInfo">
             <summary>
@@ -1010,6 +1010,7 @@
         <member name="T:Hzdtf.Utility.Cache.SingleTypeLocalMemoryBase`2">
             <summary>
             单类型的本地内存基类
+            本类不会加锁，子类必须要考虑使用线程安全的字典
             @ 黄振东
             </summary>
             <typeparam name="KeyT">键类型</typeparam>
@@ -1092,12 +1093,6 @@
             获取缓存
             </summary>
             <returns>缓存</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Cache.SingleTypeLocalMemoryBase`2.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
         </member>
         <member name="M:Hzdtf.Utility.Cache.SingleTypeLocalMemoryBase`2.SetAll(System.Collections.Generic.IDictionary{`0,`1})">
             <summary>
@@ -1319,11 +1314,6 @@
             字典缓存
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Config.AssemblyConfig.AssemblyConfigLocalMember.syncDicCache">
-            <summary>
-            同步字典缓存
-            </summary>
-        </member>
         <member name="P:Hzdtf.Utility.Config.AssemblyConfig.AssemblyConfigLocalMember.ProtoAssemblyConfigReader">
             <summary>
             原生程序集配置读取
@@ -1340,12 +1330,6 @@
             获取缓存
             </summary>
             <returns>缓存</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Config.AssemblyConfig.AssemblyConfigLocalMember.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.Config.AssemblyConfig.AssemblyConfigXml">
             <summary>
@@ -1497,7 +1481,7 @@
             </summary>
             <typeparam name="ConnectionInfoT">连接信息类型</typeparam>
         </member>
-        <member name="P:Hzdtf.Utility.Connection.ConnectionBase`1.ConnectionStringParse">
+        <member name="F:Hzdtf.Utility.Connection.ConnectionBase`1.connectionStringParse">
             <summary>
             连接字符串解析器
             </summary>
@@ -1516,6 +1500,12 @@
             <summary>
             连接信息
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Connection.ConnectionBase`1.#ctor(Hzdtf.Utility.Connection.IConnectionStringParse{`0})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="connectionStringParse">连接字符串解析器</param>
         </member>
         <member name="M:Hzdtf.Utility.Connection.ConnectionBase`1.Open">
             <summary>
@@ -1601,6 +1591,12 @@
             连接基类
             @ 黄振东
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Connection.ConnectionBase.#ctor(Hzdtf.Utility.Connection.IConnectionStringParse{Hzdtf.Utility.Connection.ConnectionInfo})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="connectionStringParse">连接字符串解析器</param>
         </member>
         <member name="T:Hzdtf.Utility.Connection.ConnectionConfigFactoryBase`3">
             <summary>
@@ -3000,11 +2996,6 @@
             事件源映射事件处理的字典
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Event.AppEventBus.syncDicSourceMapHandler">
-            <summary>
-            同步事件源映射事件处理的字典
-            </summary>
-        </member>
         <member name="F:Hzdtf.Utility.Event.AppEventBus.INSTANCE">
             <summary>
             实例
@@ -3236,11 +3227,6 @@
             字典缓存
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.GRpcStrategy.GRpcChannelStrategyCache.syncDicCache">
-            <summary>
-            同步字典缓存
-            </summary>
-        </member>
         <member name="F:Hzdtf.Utility.GRpcStrategy.GRpcChannelStrategyCache.servicesBuilder">
             <summary>
             服务生成器
@@ -3271,12 +3257,6 @@
             获取缓存
             </summary>
             <returns>缓存</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.GRpcStrategy.GRpcChannelStrategyCache.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
         </member>
         <member name="M:Hzdtf.Utility.GRpcStrategy.GRpcChannelStrategyCache.UpdateExistsesAddress(System.String,System.String[])">
             <summary>
@@ -3316,11 +3296,6 @@
             缓存键
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.GRpc.GRpcServiceAddCache.syncDicCaches">
-            <summary>
-            同步缓存键
-            </summary>
-        </member>
         <member name="M:Hzdtf.Utility.GRpc.GRpcServiceAddCache.#ctor(Hzdtf.Utility.HostConfig.IHostConfigReader)">
             <summary>
             构造方法
@@ -3339,12 +3314,6 @@
             获取缓存对象
             </summary>
             <returns>缓存对象</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.GRpc.GRpcServiceAddCache.GetSyncCache">
-            <summary>
-            获取同步缓存对象
-            </summary>
-            <returns>同步缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.GRpc.IGRpcServiceAddReader">
             <summary>
@@ -3387,6 +3356,211 @@
             @ 黄振东
             </summary>
         </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.AttrInterceptorBase`1">
+            <summary>
+            特性拦截器基类
+            @ 黄振东
+            </summary>
+            <typeparam name="AttrT">特性类型</typeparam>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.AttrInterceptorBase`1.InterceptOperation(Castle.DynamicProxy.IInvocation,System.Boolean@)">
+            <summary>
+            拦截操作
+            </summary>
+            <param name="invocation">拦截参数</param>
+            <param name="isExecProceeded">是否已执行</param>
+            <returns>基本返回信息</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.AttrInterceptorBase`1.Intercept(Hzdtf.Utility.Model.Return.BasicReturnInfo,Castle.DynamicProxy.IInvocation,`0,System.Boolean@)">
+            <summary>
+            拦截
+            </summary>
+            <param name="basicReturn">基本返回</param>
+            <param name="invocation">拦截参数</param>
+            <param name="attr">特性</param>
+            <param name="isExecProceeded">是否已执行</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.AuthInterceptor">
+            <summary>
+            授权拦截器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.AuthInterceptor.Intercept(Hzdtf.Utility.Model.Return.BasicReturnInfo,Castle.DynamicProxy.IInvocation,Hzdtf.Utility.Attr.AuthAttribute,System.Boolean@)">
+            <summary>
+            拦截
+            </summary>
+            <param name="basicReturn">基本返回</param>
+            <param name="invocation">拦截参数</param>
+            <param name="attr">特性</param>
+            <param name="isExecProceeded">是否已执行</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.DisabledInterceptor">
+            <summary>
+            禁用拦截器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.DisabledInterceptor.Intercept(Hzdtf.Utility.Model.Return.BasicReturnInfo,Castle.DynamicProxy.IInvocation,Hzdtf.Utility.Attr.DisabledAttribute,System.Boolean@)">
+            <summary>
+            拦截
+            </summary>
+            <param name="basicReturn">基本返回</param>
+            <param name="invocation">拦截参数</param>
+            <param name="attr">特性</param>
+            <param name="isExecProceeded">是否已执行</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.InterceptorBase">
+            <summary>
+            拦截器基类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.InterceptorBase.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            拦截
+            </summary>
+            <param name="invocation">拦截参数</param>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.InterceptorBase.InterceptOperation(Castle.DynamicProxy.IInvocation,System.Boolean@)">
+            <summary>
+            拦截操作
+            </summary>
+            <param name="invocation">拦截参数</param>
+            <param name="isExecProceeded">是否已执行</param>
+            <returns>基本返回信息</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.InterceptorBase.SetErrMsg(Castle.DynamicProxy.IInvocation,Hzdtf.Utility.Model.Return.BasicReturnInfo)">
+            <summary>
+            设置错误消息
+            </summary>
+            <param name="invocation">拦截参数</param>
+            <param name="returnInfo">返回信息</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.ParamValiInterceptor">
+            <summary>
+            参数验证拦截器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.ParamValiInterceptor.syncDicValiParam">
+            <summary>
+            同步验证参数字典
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.ParamValiInterceptor.dicValiParams">
+            <summary>
+            验证参数字典
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.ParamValiInterceptor.InterceptOperation(Castle.DynamicProxy.IInvocation,System.Boolean@)">
+            <summary>
+            拦截操作
+            </summary>
+            <param name="invocation">拦截参数</param>
+            <param name="isExecProceeded">是否已执行</param>
+            <returns>基本返回信息</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.ParamValiInterceptor.AppendAttrMapValiHandler(System.Type,Hzdtf.Utility.VaiParam.IValiParam)">
+            <summary>
+            追加属性映射验证处理
+            attrType必须是特性，且是继承于ValidationAttribute
+            </summary>
+            <param name="attrType">特性类型</param>
+            <param name="valiParam">验证参数</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.ProcTrackLogInterceptor">
+            <summary>
+            执行过程轨迹日志拦截器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.ProcTrackLogInterceptor.syncLog">
+            <summary>
+            同步日志
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.ProcTrackLogInterceptor.log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Intercepteds.ProcTrackLogInterceptor.Log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.ProcTrackLogInterceptor.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            拦截
+            </summary>
+            <param name="invocation">拦截参数</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor">
+            <summary>
+            捕获异常拦截器，方法的返回值必须是BasicReturnInfo或BasicReturnInfo子类，否则会抛出异常
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.syncLog">
+            <summary>
+            同步日志
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.Log">
+            <summary>
+            日志
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.syncLocalize">
+            <summary>
+            同步本地化
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.localize">
+            <summary>
+            本地化
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.Localize">
+            <summary>
+            本地化
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.Intercept(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            拦截
+            </summary>
+            <param name="invocation">拦截参数</param>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.TryExceptionInterceptor.FilterReturnValue(Castle.DynamicProxy.IInvocation,System.Exception)">
+            <summary>
+            过滤返回值
+            </summary>
+            <param name="invocation">拦截参数</param>
+            <param name="ex"></param>
+            <returns>是否已过滤</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.Intercepteds.ValiInterceptor">
+            <summary>
+            验证拦截器
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Intercepteds.ValiInterceptor.Intercept(Hzdtf.Utility.Model.Return.BasicReturnInfo,Castle.DynamicProxy.IInvocation,Hzdtf.Utility.Attr.ValiAttribute,System.Boolean@)">
+            <summary>
+            拦截
+            </summary>
+            <param name="basicReturn">基本返回</param>
+            <param name="invocation">拦截参数</param>
+            <param name="attr">特性</param>
+            <param name="isExecProceeded">是否已执行</param>
+        </member>
         <member name="T:Hzdtf.Utility.InterfaceImpl.IInterfaceMapImpl">
             <summary>
             接口映射实现类的接口
@@ -3402,11 +3576,6 @@
         <member name="F:Hzdtf.Utility.InterfaceImpl.InterfaceMapImplCache.dicCaches">
             <summary>
             缓存键，接口名映射实现类名
-            </summary>
-        </member>
-        <member name="F:Hzdtf.Utility.InterfaceImpl.InterfaceMapImplCache.syncDicCaches">
-            <summary>
-            同步缓存键
             </summary>
         </member>
         <member name="F:Hzdtf.Utility.InterfaceImpl.InterfaceMapImplCache.readerConfig">
@@ -3432,12 +3601,6 @@
             获取缓存对象
             </summary>
             <returns>缓存对象</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.InterfaceImpl.InterfaceMapImplCache.GetSyncCache">
-            <summary>
-            获取同步缓存对象
-            </summary>
-            <returns>同步缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.Json.DateTimeLocalJsonConvert">
             <summary>
@@ -3484,6 +3647,71 @@
             <param name="writer">写入</param>
             <param name="value">值</param>
             <param name="options">JSON配置选项</param>
+        </member>
+        <member name="T:Hzdtf.Utility.Listen.ListenConfigHelper">
+            <summary>
+            监听配置帮助类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Listen.ListenConfigHelper.Reader">
+            <summary>
+            读取配置
+            </summary>
+            <returns>配置</returns>
+        </member>
+        <member name="T:Hzdtf.Utility.Listen.ListenConfig">
+            <summary>
+            监听配置
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Listens">
+            <summary>
+            监听数组
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.Listen.ListenConfig.Listen">
+            <summary>
+            监听
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Listen.Port">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Listen.Protocols">
+            <summary>
+            协议
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Listen.Https">
+            <summary>
+            https
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.Listen.ListenConfig.Https">
+            <summary>
+            https
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Https.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Https.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Https.PasswordEncrypt">
+            <summary>
+            密码是否加密，默认为否
+            </summary>
         </member>
         <member name="T:Hzdtf.Utility.LoadBalance.HashIpPortLoadBalance">
             <summary>
@@ -3697,11 +3925,6 @@
             字典缓存
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Localization.CultureLibraryCache.syncDicCache">
-            <summary>
-            同步字典缓存
-            </summary>
-        </member>
         <member name="F:Hzdtf.Utility.Localization.CultureLibraryCache.protoCultureLibrary">
             <summary>
             原生文化库读取
@@ -3719,12 +3942,6 @@
             获取缓存
             </summary>
             <returns>缓存</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Localization.CultureLibraryCache.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
         </member>
         <member name="M:Hzdtf.Utility.Localization.CultureLibraryCache.Set(Hzdtf.Utility.Localization.ICultureLibrary)">
             <summary>
@@ -3791,10 +4008,16 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Localization.LocalizationImpl.CultureLibrary">
+        <member name="F:Hzdtf.Utility.Localization.LocalizationImpl.cultureLibrary">
             <summary>
             文化库
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Localization.LocalizationImpl.#ctor(Hzdtf.Utility.Localization.ICultureLibrary)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="cultureLibrary">文化库</param>
         </member>
         <member name="M:Hzdtf.Utility.Localization.LocalizationImpl.Get(System.String,System.String)">
             <summary>
@@ -4025,12 +4248,12 @@
             登录时间
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Model.BasicUserInfo`1.LoginIp_Name">
+        <member name="F:Hzdtf.Utility.Model.BasicUserInfo`1.LoginClientIP_Name">
             <summary>
             登录IP_名称
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Model.BasicUserInfo`1.LoginIp">
+        <member name="P:Hzdtf.Utility.Model.BasicUserInfo`1.LoginClientIP">
             <summary>
             登录IP
             </summary>
@@ -4055,26 +4278,26 @@
             退出登录时间
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Model.BasicUserInfo`1.MerchantId_Name">
+        <member name="F:Hzdtf.Utility.Model.BasicUserInfo`1.TeantId_Name">
             <summary>
-            商户ID_名称
-            一般情况没有，特殊情况下有用，如SAAS中的商户
+            租赁ID_名称
+            一般情况没有，特殊情况下有用，如SAAS中的租赁
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Model.BasicUserInfo`1.MerchantId">
+        <member name="P:Hzdtf.Utility.Model.BasicUserInfo`1.TeantId">
             <summary>
-            商户ID
-            一般情况没有，特殊情况下有用，如SAAS中的商户
+            租赁ID
+            一般情况没有，特殊情况下有用，如SAAS中的租赁
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Model.BasicUserInfo`1.MerchantIdString_Name">
+        <member name="F:Hzdtf.Utility.Model.BasicUserInfo`1.TeantIdString_Name">
             <summary>
-            商户ID字符串_名称
+            租赁ID字符串_名称
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Model.BasicUserInfo`1.MerchantIdString">
+        <member name="P:Hzdtf.Utility.Model.BasicUserInfo`1.TeantIdString">
             <summary>
-            商户ID字符串，如果ID类型为长整型，则在JS前端使用此属性为字符串类型，因为JS中长整型会丢失精度
+            租赁ID字符串，如果ID类型为长整型，则在JS前端使用此属性为字符串类型，因为JS中长整型会丢失精度
             </summary>
         </member>
         <member name="T:Hzdtf.Utility.Model.BasicUserInfo">
@@ -4195,9 +4418,19 @@
             键
             </summary>
         </member>
+        <member name="F:Hzdtf.Utility.Model.CommonUseData.controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
         <member name="P:Hzdtf.Utility.Model.CommonUseData.Controller">
             <summary>
             控制器
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Model.CommonUseData.action">
+            <summary>
+            动作
             </summary>
         </member>
         <member name="P:Hzdtf.Utility.Model.CommonUseData.Action">
@@ -4205,9 +4438,29 @@
             动作
             </summary>
         </member>
+        <member name="F:Hzdtf.Utility.Model.CommonUseData.path">
+            <summary>
+            路径，小写
+            </summary>
+        </member>
         <member name="P:Hzdtf.Utility.Model.CommonUseData.Path">
             <summary>
             路径，小写
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Model.CommonUseData.clientRemoteIp">
+            <summary>
+            客户端远程IP
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.Model.CommonUseData.ClientRemoteIp">
+            <summary>
+            客户端远程IP
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Model.CommonUseData.commMode">
+            <summary>
+            通讯方式
             </summary>
         </member>
         <member name="P:Hzdtf.Utility.Model.CommonUseData.CommMode">
@@ -4228,6 +4481,11 @@
         <member name="P:Hzdtf.Utility.Model.CommonUseData.CurrUser">
             <summary>
             当前用户
+            </summary>
+        </member>
+        <member name="F:Hzdtf.Utility.Model.CommonUseData.token">
+            <summary>
+            票据
             </summary>
         </member>
         <member name="P:Hzdtf.Utility.Model.CommonUseData.Token">
@@ -4263,6 +4521,22 @@
             Key：方法
             value：参数
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Model.CommonUseData.#ctor">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Model.CommonUseData.#ctor(System.String,System.String,System.String,Hzdtf.Utility.Enums.CommunicationMode,System.String,System.String)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="controller">控制器</param>
+            <param name="action">动作</param>
+            <param name="path">路径</param>
+            <param name="commMode">通讯方式</param>
+            <param name="clientRemoteIp">客户端远程IP</param>
+            <param name="token">票据</param>
         </member>
         <member name="M:Hzdtf.Utility.Model.CommonUseData.AddCallback(System.Action{System.Object},System.Object)">
             <summary>
@@ -4464,15 +4738,17 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="M:Hzdtf.Utility.Model.IAuthToken.GetToken">
+        <member name="M:Hzdtf.Utility.Model.IAuthToken.GetToken(System.Object)">
             <summary>
             获取票据
             </summary>
+            <param name="context">上下文</param>
             <returns>票据</returns>
         </member>
         <member name="T:Hzdtf.Utility.Model.Identitys.GuidId">
             <summary>
             Guid ID
+            @ 黄振东
             </summary>
         </member>
         <member name="M:Hzdtf.Utility.Model.Identitys.GuidId.ConvertTo(System.String)">
@@ -4511,6 +4787,7 @@
         <member name="T:Hzdtf.Utility.Model.Identitys.IIdentity`1">
             <summary>
             ID接口
+            @ 黄振东
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
         </member>
@@ -4550,6 +4827,7 @@
         <member name="T:Hzdtf.Utility.Model.Identitys.IntId">
             <summary>
             整型ID
+            @ 黄振东
             </summary>
         </member>
         <member name="M:Hzdtf.Utility.Model.Identitys.IntId.ConvertTo(System.String)">
@@ -4589,6 +4867,7 @@
             <summary>
             雪花算法ID
             分布式全局唯一ID
+            @ 黄振东
             </summary>
         </member>
         <member name="F:Hzdtf.Utility.Model.Identitys.SnowflakeId.worker">
@@ -4645,6 +4924,7 @@
         <member name="T:Hzdtf.Utility.Model.Identitys.StringId">
             <summary>
             字符串ID
+            @ 黄振东
             </summary>
         </member>
         <member name="M:Hzdtf.Utility.Model.Identitys.StringId.ConvertTo(System.String)">
@@ -4990,30 +5270,30 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="T:Hzdtf.Utility.Model.PersonTimeTenantInfo`1">
+        <member name="T:Hzdtf.Utility.Model.PersonTimeTeantInfo`1">
             <summary>
-            带有人时间商户信息
+            带有人时间租赁信息
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
         </member>
-        <member name="F:Hzdtf.Utility.Model.PersonTimeTenantInfo`1.MerchantId_Name">
+        <member name="F:Hzdtf.Utility.Model.PersonTimeTeantInfo`1.TeantId_Name">
             <summary>
-            商户ID_名称
+            租赁ID_名称
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Model.PersonTimeTenantInfo`1.MerchantId">
+        <member name="P:Hzdtf.Utility.Model.PersonTimeTeantInfo`1.TeantId">
             <summary>
-            商户ID
+            租赁ID
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Model.PersonTimeTenantInfo`1.MerchantIdString_Name">
+        <member name="F:Hzdtf.Utility.Model.PersonTimeTeantInfo`1.TeantIdString_Name">
             <summary>
-            商户ID字符串_名称
+            租赁ID字符串_名称
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Model.PersonTimeTenantInfo`1.MerchantIdString">
+        <member name="P:Hzdtf.Utility.Model.PersonTimeTeantInfo`1.TeantIdString">
             <summary>
-            商户ID字符串，如果ID类型为长整型，则在JS前端使用此属性为字符串类型，因为JS中长整型会丢失精度
+            租赁ID字符串，如果ID类型为长整型，则在JS前端使用此属性为字符串类型，因为JS中长整型会丢失精度
             </summary>
         </member>
         <member name="T:Hzdtf.Utility.Model.SimpleInfoExtensions">
@@ -5406,6 +5686,11 @@
             ID_名称
             </summary>
         </member>
+        <member name="F:Hzdtf.Utility.Model.SimpleInfo`1.id">
+            <summary>
+            ID
+            </summary>
+        </member>
         <member name="P:Hzdtf.Utility.Model.SimpleInfo`1.Id">
             <summary>
             ID
@@ -5433,61 +5718,39 @@
             </summary>
             <returns>字符串</returns>
         </member>
+        <member name="M:Hzdtf.Utility.Model.SimpleInfo`1.IdSetValue(`0)">
+            <summary>
+            ID设置值
+            </summary>
+            <param name="id">ID</param>
+        </member>
+        <member name="M:Hzdtf.Utility.Model.SimpleInfo`1.IdGetValue">
+            <summary>
+            ID获取值
+            </summary>
+            <returns>ID</returns>
+        </member>
         <member name="T:Hzdtf.Utility.Model.SimpleInfo">
             <summary>
             简单信息
             @ 黄振东
             </summary>
         </member>
-        <member name="T:Hzdtf.Utility.Model.SimpleTenanInfo`1">
+        <member name="T:Hzdtf.Utility.Model.SimpleTeantInfo`1">
             <summary>
-            简单商户信息
+            简单租赁信息
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
         </member>
-        <member name="F:Hzdtf.Utility.Model.SimpleTenanInfo`1.MerchantId_Name">
+        <member name="F:Hzdtf.Utility.Model.SimpleTeantInfo`1.TeantId_Name">
             <summary>
-            商户ID_名称
+            租赁ID_名称
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Model.SimpleTenanInfo`1.MerchantId">
+        <member name="P:Hzdtf.Utility.Model.SimpleTeantInfo`1.TeantId">
             <summary>
-            商户ID
+            租赁ID
             </summary>
-        </member>
-        <member name="T:Hzdtf.Utility.Model.SqlPropInfo">
-            <summary>
-            SQL属性信息
-            @ 黄振东
-            </summary>
-        </member>
-        <member name="P:Hzdtf.Utility.Model.SqlPropInfo.Top">
-            <summary>
-            前面几条，如果为0，则不加此条件
-            </summary>
-        </member>
-        <member name="P:Hzdtf.Utility.Model.SqlPropInfo.AppendMerchantId">
-            <summary>
-            追加商户ID，默认值为“默认”
-            </summary>
-        </member>
-        <member name="P:Hzdtf.Utility.Model.SqlPropInfo.PropertyNames">
-            <summary>
-            属性名称集合，如果为空则获取全部
-            </summary>
-        </member>
-        <member name="P:Hzdtf.Utility.Model.SqlPropInfo.WhereSql">
-            <summary>
-            条件SQL，不包含where
-            如果有包含属性，则用格式（区分大小写）：|/属性名/|
-            </summary>
-        </member>
-        <member name="M:Hzdtf.Utility.Model.SqlPropInfo.PackPropName(System.String)">
-            <summary>
-            封装属性名
-            </summary>
-            <param name="propName">属性名</param>
-            <returns>封装后的属性名</returns>
         </member>
         <member name="T:Hzdtf.Utility.Model.TimeInfo`1">
             <summary>
@@ -5699,20 +5962,22 @@
             key:类全路径名(不包含方法名)
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.ProcessCall.MethodCallCache.syncDicCaches">
-            <summary>
-            同步缓存键
-            </summary>
-        </member>
-        <member name="P:Hzdtf.Utility.ProcessCall.MethodCallCache.ParamValueConvert">
+        <member name="F:Hzdtf.Utility.ProcessCall.MethodCallCache.paramValueConvert">
             <summary>
             参数值转换,默认是JsonConvertTypeValue
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.ProcessCall.MethodCallCache.Instance">
+        <member name="F:Hzdtf.Utility.ProcessCall.MethodCallCache.instance">
             <summary>
             实例,默认是ReflectInstance
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.ProcessCall.MethodCallCache.#ctor(Hzdtf.Utility.Conversion.IConvertTypeValue,Hzdtf.Utility.Data.IInstance)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="paramValueConvert">参数值转换,默认是JsonConvertTypeValue</param>
+            <param name="instance">实例,默认是ReflectInstance</param>
         </member>
         <member name="M:Hzdtf.Utility.ProcessCall.MethodCallCache.Invoke(System.String,System.Object[])">
             <summary>
@@ -5744,12 +6009,6 @@
             </summary>
             <returns>缓存对象</returns>
         </member>
-        <member name="M:Hzdtf.Utility.ProcessCall.MethodCallCache.GetSyncCache">
-            <summary>
-            获取同步缓存对象
-            </summary>
-            <returns>同步缓存对象</returns>
-        </member>
         <member name="T:Hzdtf.Utility.ProcessCall.RpcServerListen">
             <summary>
             Rpc服务监听
@@ -5761,22 +6020,22 @@
             关闭后事件
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.ProcessCall.RpcServerListen.BytesSerialization">
+        <member name="F:Hzdtf.Utility.ProcessCall.RpcServerListen.bytesSerialization">
             <summary>
             字节数组序列化，默认为json序列化
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.ProcessCall.RpcServerListen.InterfaceMapImpl">
+        <member name="F:Hzdtf.Utility.ProcessCall.RpcServerListen.interfaceMapImpl">
             <summary>
             接口映射实现，默认为InterfaceMapImplCache
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.ProcessCall.RpcServerListen.MethodCall">
+        <member name="F:Hzdtf.Utility.ProcessCall.RpcServerListen.methodCall">
             <summary>
             方法调用，默认为MethodCallCache
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.ProcessCall.RpcServerListen.RpcServer">
+        <member name="F:Hzdtf.Utility.ProcessCall.RpcServerListen.rpcServer">
             <summary>
             Rpc服务端
             </summary>
@@ -5785,6 +6044,15 @@
             <summary>
             接收中错误事件
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.ProcessCall.RpcServerListen.#ctor(Hzdtf.Utility.Data.IBytesSerialization,Hzdtf.Utility.InterfaceImpl.IInterfaceMapImpl,Hzdtf.Utility.ProcessCall.IMethodCall,Hzdtf.Utility.ProcessCall.IRpcServer)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="bytesSerialization">字节数组序列化，默认为json序列化</param>
+            <param name="interfaceMapImpl">接口映射实现，默认为InterfaceMapImplCache</param>
+            <param name="methodCall">方法调用，默认为MethodCallCache</param>
+            <param name="rpcServer">Rpc服务端</param>
         </member>
         <member name="M:Hzdtf.Utility.ProcessCall.RpcServerListen.Listen">
             <summary>
@@ -5834,11 +6102,6 @@
             缓存键
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.ProcessCall.StaticProcessCallCache.syncDicCaches">
-            <summary>
-            同步缓存键
-            </summary>
-        </member>
         <member name="F:Hzdtf.Utility.ProcessCall.StaticProcessCallCache.dicClasses">
             <summary>
             类配置字典
@@ -5868,12 +6131,6 @@
             获取缓存对象
             </summary>
             <returns>缓存对象</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.ProcessCall.StaticProcessCallCache.GetSyncCache">
-            <summary>
-            获取同步缓存对象
-            </summary>
-            <returns>同步缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.Proxy.BusinessDispatchProxyBase`1">
             <summary>
@@ -5935,10 +6192,16 @@
             </summary>
             <typeparam name="SubClassT">子类类型</typeparam>
         </member>
-        <member name="P:Hzdtf.Utility.Proxy.RpcDispatchProxyClient`1.RpcClientMethod">
+        <member name="F:Hzdtf.Utility.Proxy.RpcDispatchProxyClient`1.rpcClientMethod">
             <summary>
             Rpc客户端方法
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Proxy.RpcDispatchProxyClient`1.#ctor(Hzdtf.Utility.ProcessCall.IRpcClientMethod)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="rpcClientMethod">Rpc客户端方法</param>
         </member>
         <member name="M:Hzdtf.Utility.Proxy.RpcDispatchProxyClient`1.InvokeBusiness(System.Reflection.MethodInfo,System.Object[])">
             <summary>
@@ -5959,6 +6222,12 @@
             RPC动态代理客户端
             @ 黄振东
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Proxy.RpcDispatchProxyClient.#ctor(Hzdtf.Utility.ProcessCall.IRpcClientMethod)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="rpcClientMethod">Rpc客户端方法</param>
         </member>
         <member name="T:Hzdtf.Utility.Release.IClearable">
             <summary>
@@ -6023,6 +6292,12 @@
             <summary>
             负载均衡策略
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.RemoteService.Builder.HttpServicesBuilder.#ctor(Hzdtf.Utility.RemoteService.Provider.IServicesProvider)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="serviceProvider">服务提供者</param>
         </member>
         <member name="M:Hzdtf.Utility.RemoteService.Builder.HttpServicesBuilder.BuilderAsync(System.String)">
             <summary>
@@ -6613,22 +6888,11 @@
             字典缓存
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.RequestResource.RequestResourceCache.syncDicCache">
-            <summary>
-            同步字典缓存
-            </summary>
-        </member>
         <member name="M:Hzdtf.Utility.RequestResource.RequestResourceCache.GetCache">
             <summary>
             获取缓存
             </summary>
             <returns>缓存</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.RequestResource.RequestResourceCache.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.Resources.DatabasePoolBase">
             <summary>
@@ -6655,15 +6919,22 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Resources.DatabasePoolServiceBase.DatabasePool">
+        <member name="F:Hzdtf.Utility.Resources.DatabasePoolServiceBase.databasePool">
             <summary>
             数据库池
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.Resources.DatabasePoolServiceBase.SlaveDatabasePool">
+        <member name="F:Hzdtf.Utility.Resources.DatabasePoolServiceBase.slaveDatabasePool">
             <summary>
             从数据库池
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Resources.DatabasePoolServiceBase.#ctor(Hzdtf.Utility.Resources.IDatabasePool,Hzdtf.Utility.Resources.ISlaveDatabasePool)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="databasePool">数据库池</param>
+            <param name="slaveDatabasePool">从数据库池</param>
         </member>
         <member name="M:Hzdtf.Utility.Resources.DatabasePoolServiceBase.GetDatabasePool(Hzdtf.Utility.Enums.AccessMode)">
             <summary>
@@ -7272,7 +7543,7 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.Safety.SymmetricalEncryptionUtil.DefaultSymmetricalEncryption">
+        <member name="F:Hzdtf.Utility.Safety.SymmetricalEncryptionUtil.defaultSymmetricalEncryption">
             <summary>
             默认加密
             </summary>
@@ -7463,171 +7734,172 @@
             <param name="comData">通用数据</param>
             <returns>返回信息 key：菜单编码，value：功能编码数组</returns>
         </member>
-        <member name="T:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermission`1">
+        <member name="T:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermission`1">
             <summary>
-            商户用户菜单权限接口
+            租赁用户菜单权限接口
             @ 黄振东
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermission`1.UserHavePermission(`0,`0,System.String,System.String[],Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermission`1.UserHavePermission(`0,`0,System.String,System.String[],Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             用户是否拥有权限
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="menuCode">菜单编码</param>
             <param name="funCodes">功能编码数组</param>
             <param name="comData">通用数据</param>
             <returns>返回信息</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermission`1.GetHavePermissionMenuFunCodes(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermission`1.GetHavePermissionMenuFunCodes(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             根据用户ID获取拥有权限的菜单功能编码字典
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="comData">通用数据</param>
             <returns>返回信息 key：菜单编码，value：功能编码数组</returns>
         </member>
-        <member name="T:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1">
+        <member name="T:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1">
             <summary>
-            商户用户菜单权限缓存接口
+            租赁用户菜单权限缓存接口
             @ 黄振东
             </summary>
             <typeparam name="IdT">用户类型</typeparam>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.InitCache(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.InitCache(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             初始化缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="comData">通用数据</param>
             <returns>返回信息</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.GetWithTSNotAccessKeys(System.TimeSpan)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.GetWithTSNotAccessKeys(System.TimeSpan)">
             <summary>
             获取时间范围内没有访问的键数组
             </summary>
             <param name="timeSpan">时间范围</param>
             <returns>时间范围内没有访问的键数组</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.RemoveWithTSNotAccess(System.TimeSpan)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.RemoveWithTSNotAccess(System.TimeSpan)">
             <summary>
             移除时间范围内没有访问的用户
             </summary>
             <param name="timeSpan">时间范围</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.RemoveCache(`0,`0)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.RemoveCache(`0,`0)">
             <summary>
-            根据商户ID和用户ID移除缓存
+            根据租赁ID和用户ID移除缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.RemoveCache(`0,`0[])">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.RemoveCache(`0,`0[])">
             <summary>
-            根据商户ID和用户ID移除缓存
+            根据租赁ID和用户ID移除缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userIds">用户ID数组</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.RemoveCache(Hzdtf.Utility.Model.KeyValueInfo{`0,`0}[])">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.RemoveCache(Hzdtf.Utility.Model.KeyValueInfo{`0,`0}[])">
             <summary>
-            根据商户ID和用户ID移除缓存
+            根据租赁ID和用户ID移除缓存
             </summary>
-            <param name="merchantIdMapUserIds">商户ID映射用户ID，key：商户ID，value：用户ID</param>
+            <param name="teantIdMapUserIds">租赁ID映射用户ID，key：租赁ID，value：用户ID</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuPermissionCache`1.ClearCache(`0)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuPermissionCache`1.ClearCache(`0)">
             <summary>
-            根据商户ID清空缓存
+            根据租赁ID清空缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <returns>是否清空成功</returns>
         </member>
-        <member name="T:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuReader`1">
+        <member name="T:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuReader`1">
             <summary>
-            商户用户菜单读取接口
+            租赁用户菜单读取接口
             @ 黄振东
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.IMerchantUserMenuReader`1.GetHavePermissionMenuFunCodes(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuReader`1.GetHavePermissionMenuFunCodes(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             根据用户ID获取拥有权限的菜单功能编码字典
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="comData">通用数据</param>
             <returns>返回信息 key：菜单编码，value：功能编码数组</returns>
         </member>
-        <member name="T:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1">
+        <member name="T:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1">
             <summary>
-            商户用户菜单本地缓存
+            租赁用户菜单本地缓存
             @ 黄振东
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
         </member>
-        <member name="F:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.dicCache">
+        <member name="F:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.dicCache">
             <summary>
             字典缓存
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.dicLastAccessTime">
+        <member name="F:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.dicLastAccessTime">
             <summary>
             最后一次访问时间字典
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.syncDicCache">
+        <member name="F:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.teantIdUserMenuReader">
             <summary>
-            同步字典缓存
+            租赁用户菜单读取
             </summary>
         </member>
-        <member name="P:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.MerchantIdUserMenuReader">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.#ctor(Hzdtf.Utility.UserPermission.Teant.ITeantUserMenuReader{`0})">
             <summary>
-            商户用户菜单读取
+            构造方法
             </summary>
+            <param name="teantIdUserMenuReader">租赁用户菜单读取</param>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.UserHavePermission(`0,`0,System.String,System.String[],Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.UserHavePermission(`0,`0,System.String,System.String[],Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             用户是否拥有权限
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="menuCode">菜单编码</param>
             <param name="funCodes">功能编码数组</param>
             <param name="comData">通用数据</param>
             <returns>返回信息</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.GetHavePermissionMenuFunCodes(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.GetHavePermissionMenuFunCodes(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             根据用户ID获取拥有权限的菜单功能编码字典
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="comData">通用数据</param>
             <returns>返回信息 key：菜单编码，value：功能编码数组</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.GetWithTSNotAccessKeys(System.TimeSpan)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.GetWithTSNotAccessKeys(System.TimeSpan)">
             <summary>
             获取时间范围内没有访问的键数组
             </summary>
             <param name="timeSpan">时间范围</param>
             <returns>时间范围内没有访问的键数组</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.RemoveWithTSNotAccess(System.TimeSpan)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.RemoveWithTSNotAccess(System.TimeSpan)">
             <summary>
             移除时间范围内没有访问的用户
             </summary>
             <param name="timeSpan">时间范围</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.Add(System.String,System.Collections.Generic.IDictionary{System.String,System.String[]})">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.Add(System.String,System.Collections.Generic.IDictionary{System.String,System.String[]})">
             <summary>
             添加
             </summary>
@@ -7635,81 +7907,75 @@
             <param name="value">值</param>
             <returns>是否添加成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.InitCache(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.InitCache(`0,`0,Hzdtf.Utility.Model.CommonUseData)">
             <summary>
             初始化缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <param name="comData">通用数据</param>
             <returns>返回信息</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.RemoveCache(`0,`0)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.RemoveCache(`0,`0)">
             <summary>
-            根据商户ID和用户ID移除缓存
+            根据租赁ID和用户ID移除缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.RemoveCache(`0,`0[])">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.RemoveCache(`0,`0[])">
             <summary>
-            根据商户ID和用户ID移除缓存
+            根据租赁ID和用户ID移除缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userIds">用户ID数组</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.RemoveCache(Hzdtf.Utility.Model.KeyValueInfo{`0,`0}[])">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.RemoveCache(Hzdtf.Utility.Model.KeyValueInfo{`0,`0}[])">
             <summary>
-            根据商户ID和用户ID移除缓存
+            根据租赁ID和用户ID移除缓存
             </summary>
-            <param name="merchantIdMapUserIds">商户ID映射用户ID，key：商户ID，value：用户ID</param>
+            <param name="teantIdMapUserIds">租赁ID映射用户ID，key：租赁ID，value：用户ID</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.ClearCache(`0)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.ClearCache(`0)">
             <summary>
-            根据商户ID清空缓存
+            根据租赁ID清空缓存
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <returns>是否清空成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.Remove(System.String)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.Remove(System.String)">
             <summary>
             移除键
             </summary>
             <param name="key">键</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.Remove(System.String[])">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.Remove(System.String[])">
             <summary>
             移除键数组
             </summary>
             <param name="keys">键数组</param>
             <returns>是否移除成功</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.Clear">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.Clear">
             <summary>
             清空
             </summary>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.GetCache">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.GetCache">
             <summary>
             获取缓存
             </summary>
             <returns>缓存</returns>
         </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.UserPermission.Merchant.MerchantUserMenuLocalCache`1.GetKey(`0,`0)">
+        <member name="M:Hzdtf.Utility.UserPermission.Teant.TeantUserMenuLocalCache`1.GetKey(`0,`0)">
             <summary>
             获取键
             </summary>
-            <param name="merchantId">商户ID</param>
+            <param name="teantId">租赁ID</param>
             <param name="userId">用户ID</param>
             <returns>键</returns>
         </member>
@@ -7730,15 +7996,16 @@
             最后一次访问时间字典
             </summary>
         </member>
-        <member name="F:Hzdtf.Utility.UserPermission.UserMenuLocalCache`1.syncDicCache">
-            <summary>
-            同步字典缓存
-            </summary>
-        </member>
-        <member name="P:Hzdtf.Utility.UserPermission.UserMenuLocalCache`1.UserMenuReader">
+        <member name="F:Hzdtf.Utility.UserPermission.UserMenuLocalCache`1.userMenuReader">
             <summary>
             用户菜单读取
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.UserPermission.UserMenuLocalCache`1.#ctor(Hzdtf.Utility.UserPermission.IUserMenuReader{`0})">
+            <summary>
+            构造方法
+            </summary>
+            <param name="userMenuReader">用户菜单读取</param>
         </member>
         <member name="M:Hzdtf.Utility.UserPermission.UserMenuLocalCache`1.UserHavePermission(`0,System.String,System.String[],Hzdtf.Utility.Model.CommonUseData)">
             <summary>
@@ -7804,12 +8071,6 @@
             获取缓存
             </summary>
             <returns>缓存</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.UserPermission.UserMenuLocalCache`1.GetSyncCache">
-            <summary>
-            获取同步的缓存对象，是为了线程安全
-            </summary>
-            <returns>同步的缓存对象</returns>
         </member>
         <member name="T:Hzdtf.Utility.Utils.AuthUtil">
             <summary>
@@ -8155,6 +8416,18 @@
             <param name="list">字符串列表</param>
             <returns>长整型列表</returns>
         </member>
+        <member name="M:Hzdtf.Utility.Utils.CollectionUtil.DicToTypeDic``4(System.Collections.Generic.IDictionary{``0,``1},System.Func{System.Collections.Generic.KeyValuePair{``0,``1},System.Collections.Generic.KeyValuePair{``2,``3}})">
+            <summary>
+            将源字典转换为指定类型的目标字典
+            </summary>
+            <typeparam name="SourceKeyT">源键类型</typeparam>
+            <typeparam name="SourceValueT">源值类型</typeparam>
+            <typeparam name="TargetKeyT">目标键类型</typeparam>
+            <typeparam name="TargetValueT">目标值类型</typeparam>
+            <param name="sourceDic">源字典</param>
+            <param name="funcTo">类型转换回调</param>
+            <returns>目标字典</returns>
+        </member>
         <member name="T:Hzdtf.Utility.Utils.DataTableUtil">
             <summary>
             数据表辅助类
@@ -8492,6 +8765,20 @@
             默认HTTP客户端名称
             </summary>
         </member>
+        <member name="M:Hzdtf.Utility.Utils.NetworkUtil.IpToUInt(System.String)">
+            <summary>
+            IP字符串转换为无符号整型
+            </summary>
+            <param name="ip">IP</param>
+            <returns>无符号整型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NetworkUtil.UIntToIp(System.UInt32)">
+            <summary>
+            无符号整型转换为IP字符串
+            </summary>
+            <param name="ipUint">无符号整型IP</param>
+            <returns>IP字符串</returns>
+        </member>
         <member name="T:Hzdtf.Utility.Utils.NumberUtil">
             <summary>
             数字辅助类
@@ -8560,12 +8847,97 @@
             <param name="code">编码</param>
             <returns>数字对掩码进行或运算并得到是否匹配</returns>
         </member>
-        <member name="M:Hzdtf.Utility.Utils.NumberUtil.ToLong(System.String)">
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.CodeAndToMask(System.Int64[])">
             <summary>
-            将字符串转换为长整型数字，如果字符串为空，则默认返回0。其他非长整型转换会发生异常
+            编码进行与运算转换为掩码
             </summary>
-            <param name="longStr">长整型字符串</param>
-            <returns>长整型数字</returns>
+            <param name="code">编码</param>
+            <returns>掩码</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.IsCodeOrMaskEqual(System.Int64,System.Int64)">
+            <summary>
+            将数字对掩码进行或运算并得到是否匹配
+            </summary>
+            <param name="mask">掩码</param>
+            <param name="code">编码</param>
+            <returns>数字对掩码进行或运算并得到是否匹配</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToInt(System.String)">
+            <summary>
+            字符串转换为整型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>整型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToUInt(System.String)">
+            <summary>
+            字符串转换为无符号整型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>无符号整型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToByte(System.String)">
+            <summary>
+            字符串转换为byte型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>byte型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToSByte(System.String)">
+            <summary>
+            字符串转换为sbyte
+            </summary>
+            <param name="str">字符串</param>
+            <returns>sbyte</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToFloat(System.String)">
+            <summary>
+            字符串转换为浮点型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>浮点型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToDouble(System.String)">
+            <summary>
+            字符串转换为双精度型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>双精度型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToDecimal(System.String)">
+            <summary>
+            字符串转换为decimal
+            </summary>
+            <param name="str">字符串</param>
+            <returns>decimal</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToLong(System.String)">
+            <summary>
+            字符串转换为长整型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>长整型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToULong(System.String)">
+            <summary>
+            字符串转换为无符号长整型
+            </summary>
+            <param name="str">字符串</param>
+            <returns>无符号长整型</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToShort(System.String)">
+            <summary>
+            字符串转换为short
+            </summary>
+            <param name="str">字符串</param>
+            <returns>short</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Utils.NumberUtil.StrToUShort(System.String)">
+            <summary>
+            字符串转换为ushort
+            </summary>
+            <param name="str">字符串</param>
+            <returns>ushort</returns>
         </member>
         <member name="T:Hzdtf.Utility.Utils.PagingUtil">
             <summary>
@@ -8590,14 +8962,14 @@
             <param name="baseStartNum">基层开始数</param>
             <returns>分页开始结束数</returns>
         </member>
-        <member name="M:Hzdtf.Utility.Utils.PagingUtil.ExecPage``1(System.Int32,System.Int32,System.Func{System.Int32},System.Func{System.Collections.Generic.IList{``0}})">
+        <member name="M:Hzdtf.Utility.Utils.PagingUtil.ExecPage``1(System.Int32,System.Int32,System.Func{System.Int32},System.Func{System.Int32,System.Collections.Generic.IList{``0}})">
             <summary>
             按指定数据类型执行分页函数
             </summary>
             <param name="pageIndex">页码</param>
             <param name="pageSize">每页记录数</param>
             <param name="countFunc">统计数函数</param>
-            <param name="selectPageFunc">查询分页函数</param>
+            <param name="selectPageFunc">查询分页函数，输入参数：推荐页码</param>
             <returns>分页信息</returns>
         </member>
         <member name="M:Hzdtf.Utility.Utils.PagingUtil.ForPage(System.Func{System.Int32,System.Int32,System.Int32},System.Int32,System.Int32,System.Int32)">
@@ -8649,61 +9021,10 @@
             <param name="baseInterfaceType">接口类型</param>
             <returns>类型</returns>
         </member>
-        <member name="T:Hzdtf.Utility.Utils.SqlUtil">
-            <summary>
-            SQL辅助类
-            @ 黄振东
-            </summary>
-        </member>
-        <member name="M:Hzdtf.Utility.Utils.SqlUtil.FillSqlValue(System.String)">
-            <summary>
-            过滤SQL值
-            </summary>
-            <param name="value">值</param>
-            <returns>过滤后的SQL值</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Utils.SqlUtil.CreateWhereSql">
-            <summary>
-            创建where语句，初始化内容(包含前面空格)：" WHERE (1=1) "
-            </summary>
-            <returns>where语句</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Utils.SqlUtil.JoinSelectPropMapFields(System.String[],System.String,System.Boolean)">
-            <summary>
-            连接查询的属性映射字段集合
-            带有,号
-            </summary>
-            <param name="propFields">属性字段集合，属性与字段用空格分隔</param>
-            <param name="pfx">前辍</param>
-            <param name="ignoreId">是否过滤ID</param>
-            <returns>连接后的查询的属性映射字段集合</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Utils.SqlUtil.GetMaskSql(System.Int32,System.String,System.Boolean)">
-            <summary>
-            获取匹配掩码SQL
-            </summary>
-            <param name="code">编码</param>
-            <param name="field">字段</param>
-            <param name="isEqual">是否匹配，默认为是</param>
-            <returns>掩码SQL</returns>
-        </member>
-        <member name="M:Hzdtf.Utility.Utils.SqlUtil.GetLikeSql(System.String,Hzdtf.Utility.Enums.LikeMode)">
-            <summary>
-            获取Like SQL语句
-            </summary>
-            <param name="value">值</param>
-            <param name="mode">模式</param>
-            <returns>Like SQL语句</returns>
-        </member>
         <member name="T:Hzdtf.Utility.Utils.StreamUtil">
             <summary>
             流辅助类
             @ 黄振东
-            </summary>
-        </member>
-        <member name="F:Hzdtf.Utility.Utils.StreamUtil.syncDicObject">
-            <summary>
-            同步字典对象
             </summary>
         </member>
         <member name="F:Hzdtf.Utility.Utils.StreamUtil.syncDicFileName">
@@ -9725,10 +10046,6 @@
             日期时间扩展类
             @ 黄振东
             </summary>
-            <summary>
-            日期时间扩展类
-            @ 黄振东
-            </summary>
         </member>
         <member name="F:System.DateTimeExtensions.MAX_DATE">
             <summary>
@@ -10153,18 +10470,6 @@
             <param name="depth">深度</param>
             <param name="obj">对象</param>
         </member>
-        <member name="F:System.DateTimeExtensions.CallbackDefaultNow">
-            <summary>
-            默认当前日期时间回调
-            </summary>
-        </member>
-        <member name="P:System.DateTimeExtensions.Now">
-            <summary>
-            当前日期时间
-            如果CallbackDefaultNow不为null，则会调用CallbackDefaultNow作为当前日期时间；否则调用CstNow()
-            </summary>
-            <returns>日期时间</returns>
-        </member>
         <member name="M:System.DateTimeExtensions.GetCstDateTime(NodaTime.Instant)">
             <summary>
             获取CST日期时间（统一的日期时间，默认为上海时区）
@@ -10172,7 +10477,7 @@
             <param name="instant">片刻对象</param>
             <returns>CST日期时间</returns>
         </member>
-        <member name="M:System.DateTimeExtensions.CstNow">
+        <member name="P:System.DateTimeExtensions.Now">
             <summary>
             获取CST当前日期时间（统一的日期时间，默认为上海时区）
             </summary>
@@ -10209,6 +10514,11 @@
             <summary>
             HTTP客户端扩展类
             @ 黄振东
+            </summary>
+        </member>
+        <member name="F:System.Net.Http.HttpClientExtension.DefaultTlsHttpClientHandler">
+            <summary>
+            默认Tls http客户端处理
             </summary>
         </member>
         <member name="M:System.Net.Http.HttpClientExtension.Get(System.String,System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions},System.Nullable{System.TimeSpan})">
@@ -10448,13 +10758,27 @@
             <param name="timeout">超时</param>
             <returns>返回字符串</returns>
         </member>
+        <member name="M:System.Net.Http.HttpClientExtension.CreateSslProtocolsHttpClientHandler(System.Security.Authentication.SslProtocols)">
+            <summary>
+            创建安全协议http客户端处理
+            </summary>
+            <param name="protocols">安全协议类型</param>
+            <returns>http客户端处理</returns>
+        </member>
         <member name="T:System.JsonExtensions">
             <summary>
             JSON扩展类
             @ 黄振东
             </summary>
         </member>
-        <member name="M:System.JsonExtensions.ToJsonString(System.Object,System.Boolean,System.Boolean,Newtonsoft.Json.Formatting)">
+        <member name="M:System.JsonExtensions.ToJsonString(System.Object)">
+            <summary>
+            将对象转换为JSON字符串
+            </summary>
+            <param name="obj">对象</param>
+            <returns>JSON字符串</returns>
+        </member>
+        <member name="M:System.JsonExtensions.ToJsonString(System.Object,System.Boolean,System.Boolean,Newtonsoft.Json.Formatting,System.String)">
             <summary>
             将对象转换为JSON字符串
             </summary>
@@ -10462,6 +10786,7 @@
             <param name="isIgnoreNull">是否忽略null值，默认为是</param>
             <param name="isUseCamel">是否使用驼蜂风格（即首字母小写），默认为是</param>
             <param name="format">格式化，默认为无</param>
+            <param name="nullDefaultValue">如果为null的默认值</param>
             <returns>JSON字符串</returns>
         </member>
         <member name="M:System.JsonExtensions.ToJsonObject``1(System.String)">
@@ -10845,6 +11170,120 @@
             <param name="obj">对象</param>
             <param name="defaultValue">默认值</param>
         </member>
+        <member name="T:System.SqlPropInfo">
+            <summary>
+            SQL属性信息
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.Top">
+            <summary>
+            前面几条，如果为0，则不加此条件
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.Params">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.PropertyNames">
+            <summary>
+            属性名称集合，如果为空则获取全部
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.IsPropertyGetNot">
+            <summary>
+            属性是否取反，如果取反，则propertyNames则为排除的属性名称集合
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.FilterSql">
+            <summary>
+            过滤SQL，如果为空，则不添加任何条件语句
+            使用属性名过滤，属性名需要加前后辍，使用"SqlUtil.FilterPrefix属性名SqlUtil.FilterSuffixes"
+            注意不用加WHERE
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.IsReplaceFilterSql">
+            <summary>
+            是否替换过滤SQL，如果过滤SQL包含有特殊属性，则需要设置为true执行替换为对应字段，如果没有，则设置为false能提高性能
+            默认为true
+            </summary>
+        </member>
+        <member name="P:System.SqlPropInfo.PropMapSortTypes">
+            <summary>
+            属性映射排序类型字典
+            key：属性名，value：排序类型
+            </summary>
+        </member>
+        <member name="T:System.SqlPropExtension">
+            <summary>
+            SQL属性扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:System.SqlPropExtension.SqlPackPropName(System.String)">
+            <summary>
+            SQL封装属性名
+            </summary>
+            <param name="propName">属性名</param>
+            <returns>封装后的属性名</returns>
+        </member>
+        <member name="T:System.SqlUtil">
+            <summary>
+            SQL辅助类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="F:System.SqlUtil.FilterPrefix">
+            <summary>
+            筛选前辍
+            </summary>
+        </member>
+        <member name="F:System.SqlUtil.FilterSuffixes">
+            <summary>
+            筛选前辍
+            </summary>
+        </member>
+        <member name="M:System.SqlUtil.FillSqlValue(System.String)">
+            <summary>
+            过滤SQL值
+            </summary>
+            <param name="value">值</param>
+            <returns>过滤后的SQL值</returns>
+        </member>
+        <member name="M:System.SqlUtil.CreateWhereSql">
+            <summary>
+            创建where语句，初始化内容(包含前面空格)：" WHERE (1=1) "
+            </summary>
+            <returns>where语句</returns>
+        </member>
+        <member name="M:System.SqlUtil.JoinSelectPropMapFields(System.String[],System.String,System.Boolean)">
+            <summary>
+            连接查询的属性映射字段集合
+            带有,号
+            </summary>
+            <param name="propFields">属性字段集合，属性与字段用空格分隔</param>
+            <param name="pfx">前辍</param>
+            <param name="ignoreId">是否过滤ID</param>
+            <returns>连接后的查询的属性映射字段集合</returns>
+        </member>
+        <member name="M:System.SqlUtil.GetMaskSql(System.Int32,System.String,System.Boolean)">
+            <summary>
+            获取匹配掩码SQL
+            </summary>
+            <param name="code">编码</param>
+            <param name="field">字段</param>
+            <param name="isEqual">是否匹配，默认为是</param>
+            <returns>掩码SQL</returns>
+        </member>
+        <member name="M:System.SqlUtil.GetLikeSql(System.String,Hzdtf.Utility.Enums.LikeMode)">
+            <summary>
+            获取Like SQL语句
+            </summary>
+            <param name="value">值</param>
+            <param name="mode">模式</param>
+            <returns>Like SQL语句</returns>
+        </member>
         <member name="T:Microsoft.Extensions.Configuration.ConfigurationFactory">
             <summary>
             配置工厂类
@@ -10858,9 +11297,53 @@
             <param name="options">选项配置，如果不传则默认加载appsetting.json</param>
             <returns>配置对象</returns>
         </member>
-        <member name="T:Grpc.Net.Client.GRpcChannelUtil">
+        <member name="T:Microsoft.Extensions.DependencyInjection.UtilityExtensions">
             <summary>
-            GRpc渠道辅助类
+            辅助扩展类
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.UtilityExtensions.AddDefaultFoxUCUtility(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加默认的辅助服务
+            </summary>
+            <param name="service">服务收藏</param>
+            <returns>服务收藏</returns>
+        </member>
+        <member name="T:Newtonsoft.Json.DateTimeJsonConverter">
+            <summary>
+            日期时间JSON转换
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="M:Newtonsoft.Json.DateTimeJsonConverter.CanConvert(System.Type)">
+            <summary>
+            是否能转换
+            </summary>
+            <param name="objectType">对象类型</param>
+            <returns>是否能转换</returns>
+        </member>
+        <member name="M:Newtonsoft.Json.DateTimeJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            读取JSON
+            </summary>
+            <param name="reader">JSON读取</param>
+            <param name="objectType">对象类型</param>
+            <param name="existingValue">存在值</param>
+            <param name="serializer">JSON序列化</param>
+            <returns>读取到的值</returns>
+        </member>
+        <member name="M:Newtonsoft.Json.DateTimeJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            写入JSON
+            </summary>
+            <param name="writer">JSON写入</param>
+            <param name="value">值</param>
+            <param name="serializer">JSON序列化</param>
+        </member>
+        <member name="T:Grpc.Net.Client.GRpcExtensions">
+            <summary>
+            GRpc扩展类
             @ 黄振东
             </summary>
             <summary>
@@ -10868,7 +11351,22 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.CreateChannel(System.String,System.Action{Grpc.Net.Client.GrpcChannel,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions},Grpc.Net.Client.GrpcChannelOptions)">
+        <member name="F:Grpc.Net.Client.GRpcExtensions.DefaultSocketsHttpHandler">
+            <summary>
+            默认套接字Http处理
+            </summary>
+        </member>
+        <member name="F:Grpc.Net.Client.GRpcExtensions.DefaultSocketsTlsHttpHandler">
+            <summary>
+            默认套接字Http tls处理
+            </summary>
+        </member>
+        <member name="F:Grpc.Net.Client.GRpcExtensions.DefaultMethodConfig">
+            <summary>
+            默认方法配置
+            </summary>
+        </member>
+        <member name="M:Grpc.Net.Client.GRpcExtensions.CreateChannel(System.String,System.Action{Grpc.Net.Client.GrpcChannel,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions},Grpc.Net.Client.GrpcChannelOptions)">
             <summary>
             创建一个渠道，执行完业务处理方法后，会自动关闭渠道连接
             </summary>
@@ -10878,7 +11376,7 @@
             <param name="customerOptions">自定义选项配置</param>
             <param name="options">选项配置</param>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.ExecCallBusiness(System.String,Hzdtf.Utility.Extensions.ChannelCustomerOptions,Grpc.Net.Client.GrpcChannel,Grpc.Core.Metadata,System.String,System.Action{Grpc.Net.Client.GrpcChannel,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException})">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.ExecCallBusiness(System.String,Hzdtf.Utility.Extensions.ChannelCustomerOptions,Grpc.Net.Client.GrpcChannel,Grpc.Core.Metadata,System.String,System.Action{Grpc.Net.Client.GrpcChannel,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException})">
             <summary>
             执行回调业务
             </summary>
@@ -10890,27 +11388,27 @@
             <param name="action">回调业务动作</param>
             <param name="exAction">发生异常回调，如果为null，则不会捕获异常</param>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.IsRequestGRpc(System.String)">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.IsRequestGRpc(System.String)">
             <summary>
             判断请求内容类型是否GRpc
             </summary>
             <param name="requestContentType">请求内容</param>
             <returns>请求内容类型是否GRpc</returns>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.ThrowRpcException(System.Exception,System.String)">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.ThrowRpcException(System.Exception,System.String)">
             <summary>
             抛出RPC异常
             </summary>
             <param name="ex">异常</param>
             <param name="msg">消息</param>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.ThrowReturnFailureRpcException(Hzdtf.Utility.Model.Return.BasicReturnInfo)">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.ThrowReturnFailureRpcException(Hzdtf.Utility.Model.Return.BasicReturnInfo)">
             <summary>
             如果返回值是错误则抛出RPC异常
             </summary>
             <param name="basicReturn">基本返回</param>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.GetGRpcClient``1(System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.GetGRpcClient``1(System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
             <summary>
             获取GRpc客户端
             </summary>
@@ -10920,7 +11418,7 @@
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.GetGRpcClientAsync``1(System.Func{``0,Grpc.Core.Metadata,System.Threading.Tasks.Task},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.GetGRpcClientAsync``1(System.Func{``0,Grpc.Core.Metadata,System.Threading.Tasks.Task},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
             <summary>
             异步获取GRpc客户端
             </summary>
@@ -10930,15 +11428,16 @@
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.SetRobinBalancingAndStaticResolver(Grpc.Net.ClientFactory.GrpcClientFactoryOptions,System.String,System.Action{Grpc.Net.Client.GrpcChannelOptions})">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.SetRobinBalancingAndStaticResolver(Grpc.Net.ClientFactory.GrpcClientFactoryOptions,System.String,System.Action{Grpc.Net.Client.GrpcChannelOptions},Grpc.Core.ChannelCredentials)">
             <summary>
             设置轮询负载均衡策略和静态解析
             </summary>
             <param name="options">GRpc工厂选项配置</param>
-            <param name="callbackChannelOptions">回调GRpc渠道选项配置</param>
             <param name="service">服务</param>
+            <param name="callbackChannelOptions">回调GRpc渠道选项配置</param>
+            <param name="credentials">证书</param>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.ExecGRpcClient``1(``0,System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.ExecGRpcClient``1(``0,System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
             <summary>
             执行GRpc客户端
             需要在App.GetGRpcClient里设置获取GRpc客户端工厂的实现
@@ -10950,7 +11449,7 @@
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.ExecGRpcClientAsync``1(``0,System.Func{``0,Grpc.Core.Metadata,System.Threading.Tasks.Task},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.ExecGRpcClientAsync``1(``0,System.Func{``0,Grpc.Core.Metadata,System.Threading.Tasks.Task},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions})">
             <summary>
             异步执行GRpc客户端
             需要在App.GetGRpcClient里设置获取GRpc客户端工厂的实现
@@ -10962,7 +11461,14 @@
             <param name="customerOptions">自定义选项配置</param>
             <returns>GRpc客户端</returns>
         </member>
-        <member name="M:Grpc.Net.Client.GRpcChannelUtil.GetGRpcClientFormStrategy``1(System.String,System.Func{Grpc.Net.Client.GrpcChannel,``0},System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions},Grpc.Net.Client.GrpcChannelOptions)">
+        <member name="M:Grpc.Net.Client.GRpcExtensions.CreateSocketsHttpHandler(System.Security.Authentication.SslProtocols)">
+            <summary>
+            创建套接字http处理
+            </summary>
+            <param name="sslProtocols">安全协议，默认为none</param>
+            <returns>套接字http处理</returns>
+        </member>
+        <member name="M:Grpc.Net.Client.GRpcExtensions.GetGRpcClientFormStrategy``1(System.String,System.Func{Grpc.Net.Client.GrpcChannel,``0},System.Action{``0,Grpc.Core.Metadata},System.Action{Grpc.Core.RpcException},System.Action{Hzdtf.Utility.Extensions.ChannelCustomerOptions},Grpc.Net.Client.GrpcChannelOptions)">
             <summary>
             获取策略中的GRpc客户端
             </summary>

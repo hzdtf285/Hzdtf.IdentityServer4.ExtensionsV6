@@ -43,6 +43,13 @@
             @ 黄振东
             </summary>
         </member>
+        <member name="M:Hzdtf.Logger.Contract.ConsoleLog.#ctor(Hzdtf.Logger.Contract.ILogRecordLevel,Hzdtf.Utility.TheOperation.ITheOperation)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="logRecordLevel">日志记录级别</param>
+            <param name="theOperation">本地操作</param>
+        </member>
         <member name="M:Hzdtf.Logger.Contract.ConsoleLog.WriteStorage(System.String,System.String)">
             <summary>
             将日志内容写入到存储设备里
@@ -61,6 +68,13 @@
             内容日志基类
             @ 黄振东
             </summary>
+        </member>
+        <member name="M:Hzdtf.Logger.Contract.ContentLogBase.#ctor(Hzdtf.Logger.Contract.ILogRecordLevel,Hzdtf.Utility.TheOperation.ITheOperation)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="logRecordLevel">日志记录级别</param>
+            <param name="theOperation">本地操作</param>
         </member>
         <member name="M:Hzdtf.Logger.Contract.ContentLogBase.WriteStorage(System.String,System.String,System.String,System.Exception,System.String,System.String[])">
             <summary>
@@ -321,7 +335,7 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="P:Hzdtf.Logger.Contract.LogBase.LogRecordLevel">
+        <member name="F:Hzdtf.Logger.Contract.LogBase.logRecordLevel">
             <summary>
             日志记录级别
             </summary>
@@ -331,10 +345,17 @@
             本地ID标签数组
             </summary>
         </member>
-        <member name="P:Hzdtf.Logger.Contract.LogBase.TheOperation">
+        <member name="F:Hzdtf.Logger.Contract.LogBase.theOperation">
             <summary>
             本地操作
             </summary>
+        </member>
+        <member name="M:Hzdtf.Logger.Contract.LogBase.#ctor(Hzdtf.Logger.Contract.ILogRecordLevel,Hzdtf.Utility.TheOperation.ITheOperation)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="logRecordLevel">日志记录级别</param>
+            <param name="theOperation">本地操作</param>
         </member>
         <member name="M:Hzdtf.Logger.Contract.LogBase.Trace(System.String,System.Exception,System.String,System.String,System.String[])">
             <summary>
@@ -548,15 +569,22 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="P:Hzdtf.Logger.Contract.LogBusiness.Log">
+        <member name="F:Hzdtf.Logger.Contract.LogBusiness.log">
             <summary>
             日志
             </summary>
         </member>
-        <member name="P:Hzdtf.Logger.Contract.LogBusiness.Localize">
+        <member name="F:Hzdtf.Logger.Contract.LogBusiness.localize">
             <summary>
             本地化
             </summary>
+        </member>
+        <member name="M:Hzdtf.Logger.Contract.LogBusiness.#ctor(Hzdtf.Logger.Contract.ILogable,Hzdtf.Utility.Localization.ILocalization)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="log">日志</param>
+            <param name="localize">本地化</param>
         </member>
         <member name="M:Hzdtf.Logger.Contract.LogBusiness.TryLogExec(System.Action,System.Action{Hzdtf.Utility.Model.Return.BasicReturnInfo},System.String,System.String[])">
             <summary>

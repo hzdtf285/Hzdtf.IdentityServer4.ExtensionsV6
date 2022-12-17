@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Core\Hzdtf.IdentityServer4.Client.Extensions.AspNet\Hzdtf.IdentityServer4.Client.Extensions.AspNet.csproj" />
   </ItemGroup>
 

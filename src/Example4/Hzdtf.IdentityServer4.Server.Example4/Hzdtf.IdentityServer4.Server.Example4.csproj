@@ -5,11 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack.Annotations" Version="2.4.35" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Core\Hzdtf.IdentityServer4.Server.Extensions\Hzdtf.IdentityServer4.Server.Extensions.csproj" />
   </ItemGroup>
 

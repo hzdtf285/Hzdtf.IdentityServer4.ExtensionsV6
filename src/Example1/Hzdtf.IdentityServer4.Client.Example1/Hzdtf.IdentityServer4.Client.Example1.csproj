@@ -6,11 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MessagePack.Annotations" Version="2.4.35" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Core\Hzdtf.IdentityServer4.Client.Extensions\Hzdtf.IdentityServer4.Client.Extensions.csproj" />
   </ItemGroup>
 
@@ -20,6 +15,9 @@
     </Reference>
     <Reference Include="Hzdtf.Utility">
       <HintPath>..\..\Library\Hzdtf.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagePack.Annotations">
+      <HintPath>..\..\Library\MessagePack.Annotations.dll</HintPath>
     </Reference>
   </ItemGroup>
 
