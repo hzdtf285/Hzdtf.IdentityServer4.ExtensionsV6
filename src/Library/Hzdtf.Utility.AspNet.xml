@@ -873,7 +873,7 @@
             <param name="request">http请求</param>
             <returns>客户端请求IP</returns>
         </member>
-        <member name="M:Microsoft.AspNetCore.Http.HttpRequestExtensions.GetClientRequestIPForFoxUC(Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Microsoft.AspNetCore.Http.HttpRequestExtensions.GetClientRequestIPForHzdtf(Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             为黄振东获取客户端请求IP
             </summary>

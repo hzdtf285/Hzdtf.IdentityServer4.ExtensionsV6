@@ -11303,7 +11303,7 @@
             @ 黄振东
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.UtilityExtensions.AddDefaultFoxUCUtility(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.UtilityExtensions.AddDefaultHzdtfUtility(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             添加默认的辅助服务
             </summary>
