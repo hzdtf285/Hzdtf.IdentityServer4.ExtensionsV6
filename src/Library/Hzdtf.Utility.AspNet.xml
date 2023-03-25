@@ -66,6 +66,7 @@
         <member name="T:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware">
             <summary>
             文化中间件
+            @ 黄振东
             </summary>
         </member>
         <member name="F:Hzdtf.Utility.AspNet.Extensions.Culture.CultureMiddleware.next">
@@ -174,6 +175,42 @@
         <member name="P:Hzdtf.Utility.AspNet.Extensions.ExceptionHandle.ApiExceptionHandleOptions.HttpStatusCode">
             <summary>
             Http状态码，默认返回200
+            </summary>
+        </member>
+        <member name="T:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions">
+            <summary>
+            GRpc客户端池配置
+            @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions.PoolConfig">
+            <summary>
+            池配置
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions.ServicePoolType">
+            <summary>
+            服务池类型，对应接口类型：IGRpcUnityServicePool
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions.PoolType">
+            <summary>
+            池，对应接口类型：IGRpcChannelPool
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions.ServiceBuilderType">
+            <summary>
+            服务生成器，对应接口类型：IUnityServicesBuilder
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions.ProviderType">
+            <summary>
+            服务提供者，对应接口类型：IServicesProvider
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions.ServicesOptionsType">
+            <summary>
+            统计服务配置，对应接口类型：IUnityServicesOptions
             </summary>
         </member>
         <member name="T:Hzdtf.Utility.AspNet.Extensions.RemoteService.UnityServicesOptionsConfiguration">
@@ -509,6 +546,14 @@
             <param name="credentials">证书</param>
             <returns>服务收藏</returns>
         </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.GRpcClientExtensions.AddGRpcClientTool(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.GRpc.GRpcClientPoolOptions})">
+            <summary>
+            添加GRpc客户端池
+            </summary>
+            <param name="services">服务收藏</param>
+            <param name="options">grpc客户端池配置</param>
+            <returns>服务收藏</returns>
+        </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.JsonSerializerExtensions">
             <summary>
             JSON序列化扩展类
@@ -674,12 +719,12 @@
             <param name="options">路由权限选项配置</param>
             <returns>服务收藏</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.RoutePermissionServiceExtensions.AddTeantUserRoutePermission``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.RoutePermissionServiceExtensions.AddTenantUserRoutePermission``2(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Hzdtf.Utility.AspNet.Extensions.RoutePermission.RoutePermissionOptions})">
             <summary>
             添加租赁用户路由权限服务
             </summary>
             <typeparam name="IdT">ID类型</typeparam>
-            <typeparam name="TeantUserPermissionImplT">租赁用户权限实现类型</typeparam>
+            <typeparam name="TenantUserPermissionImplT">租赁用户权限实现类型</typeparam>
             <param name="services">服务收藏</param>
             <param name="options">路由权限选项配置</param>
             <returns>服务收藏</returns>
