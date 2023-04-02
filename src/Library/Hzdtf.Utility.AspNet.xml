@@ -965,6 +965,23 @@
             <param name="configure">回调监听配置</param>
             <returns>配置</returns>
         </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Core.ListenExtensions.ConfigListen(Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions,Hzdtf.Utility.Listen.ListenConfig@,System.Action{Hzdtf.Utility.Listen.ListenConfig.Listen,Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions})">
+            <summary>
+            配置监听
+            </summary>
+            <param name="options">配置</param>
+            <param name="config">监听配置</param>
+            <param name="configure">回调监听配置</param>
+            <returns>配置</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Core.ListenExtensions.ListenConfig(Hzdtf.Utility.Listen.ListenConfig.Listen,Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Action{Hzdtf.Utility.Listen.ListenConfig.Listen,Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions})">
+            <summary>
+            监听配置
+            </summary>
+            <param name="listen">监听</param>
+            <param name="lisOptions">监听配置</param>
+            <param name="configure">回调监听配置</param>
+        </member>
         <member name="T:Microsoft.AspNetCore.Routing.RouteValueDictionaryExtensions">
             <summary>
             路由值字典扩展类

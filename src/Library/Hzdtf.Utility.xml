@@ -1100,6 +1100,25 @@
             </summary>
             <param name="keyValues">键值对</param>
         </member>
+        <member name="T:Hzdtf.Utility.Cache.TimerRefresh.ITimerRefresh`1">
+            <summary>
+            定时刷新接口
+            @ 黄振东
+            </summary>
+            <typeparam name="ValueT">值类型</typeparam>
+        </member>
+        <member name="E:Hzdtf.Utility.Cache.TimerRefresh.ITimerRefresh`1.TimerRefreshed">
+            <summary>
+            定时刷新后事件
+            </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Cache.TimerRefresh.ITimerRefresh`1.Refresh(System.Object)">
+            <summary>
+            刷新
+            </summary>
+            <param name="state">状态</param>
+            <returns>值</returns>
+        </member>
         <member name="T:Hzdtf.Utility.Cache.TimerRefresh.TimerRefreshCacheBase`1">
             <summary>
             定时刷新缓存基类
@@ -1130,6 +1149,11 @@
         <member name="F:Hzdtf.Utility.Cache.TimerRefresh.TimerRefreshCacheBase`1.intervalMillseconds">
             <summary>
             间隔时间，单位：毫秒
+            </summary>
+        </member>
+        <member name="E:Hzdtf.Utility.Cache.TimerRefresh.TimerRefreshCacheBase`1.TimerRefreshed">
+            <summary>
+            定时刷新后事件
             </summary>
         </member>
         <member name="M:Hzdtf.Utility.Cache.TimerRefresh.TimerRefreshCacheBase`1.#ctor(System.Int32,System.Object,System.Boolean)">
@@ -3392,6 +3416,7 @@
         <member name="T:Hzdtf.Utility.GRpc.Pool.GRpcChannelPool">
             <summary>
             GRpc渠道池
+            @ 黄振东
             </summary>
         </member>
         <member name="F:Hzdtf.Utility.GRpc.Pool.GRpcChannelPool.dicCache">
@@ -3486,6 +3511,7 @@
         <member name="T:Hzdtf.Utility.GRpc.Pool.IGRpcChannelPool">
             <summary>
             GRpc渠道池接口
+            @ 黄振东
             </summary>
         </member>
         <member name="T:Hzdtf.Utility.GRpc.Pool.Service.GRpcUnityServicePool">
@@ -3932,6 +3958,11 @@
             @ 黄振东
             </summary>
         </member>
+        <member name="P:Hzdtf.Utility.Listen.ListenConfig.Listen.Host">
+            <summary>
+            主机
+            </summary>
+        </member>
         <member name="P:Hzdtf.Utility.Listen.ListenConfig.Listen.Port">
             <summary>
             端口
@@ -3946,6 +3977,18 @@
             <summary>
             https
             </summary>
+        </member>
+        <member name="M:Hzdtf.Utility.Listen.ListenConfig.Listen.GetSheme">
+            <summary>
+            获取方案
+            </summary>
+            <returns>方案</returns>
+        </member>
+        <member name="M:Hzdtf.Utility.Listen.ListenConfig.Listen.ToUrl">
+            <summary>
+            转换为URL
+            </summary>
+            <returns>URL</returns>
         </member>
         <member name="T:Hzdtf.Utility.Listen.ListenConfig.Https">
             <summary>
@@ -6338,6 +6381,7 @@
         <member name="T:Hzdtf.Utility.Pool.PoolConfigInfo`2">
             <summary>
             池配置信息
+            @ 黄振东
             </summary>
             <typeparam name="ResourceKeyT">资源键类型</typeparam>
             <typeparam name="ConcreateReourseOptionsT">具体资源配置类型</typeparam>
@@ -7378,6 +7422,14 @@
             重置，如果Services没有配置而GlobalConfiguration有配置，则用GlobalConfiguration代替。并设置默认值
             </summary>
         </member>
+        <member name="M:Hzdtf.Utility.RemoteService.Options.UnityServicesOptions.GetServiceSheme(System.String,System.String)">
+            <summary>
+            获取服务方案
+            </summary>
+            <param name="serviceName">服务名</param>
+            <param name="tag">标签</param>
+            <returns>服务方案</returns>
+        </member>
         <member name="T:Hzdtf.Utility.RemoteService.Options.UnitServicesOptionsBase">
             <summary>
             统一服务服务配置基类
@@ -7487,6 +7539,11 @@
             同步数据字典
             </summary>
         </member>
+        <member name="E:Hzdtf.Utility.RemoteService.Provider.HostConfigServiceProvider.GetAddressesed">
+            <summary>
+            获取到地址数组后事件
+            </summary>
+        </member>
         <member name="M:Hzdtf.Utility.RemoteService.Provider.HostConfigServiceProvider.#ctor(Hzdtf.Utility.HostConfig.IHostConfigReader)">
             <summary>
             构造方法
@@ -7525,6 +7582,11 @@
             @ 黄振东
             </summary>
         </member>
+        <member name="E:Hzdtf.Utility.RemoteService.Provider.IServicesProvider.GetAddressesed">
+            <summary>
+            获取到地址数组后事件
+            </summary>
+        </member>
         <member name="M:Hzdtf.Utility.RemoteService.Provider.IServicesProvider.GetAddresses(System.String,System.String)">
             <summary>
             异步根据服务名获取地址数组
@@ -7542,6 +7604,11 @@
         <member name="F:Hzdtf.Utility.RemoteService.Provider.ServiceProviderAggReaderBase.dicProtoServicesReader">
             <summary>
             原生服务读取字典
+            </summary>
+        </member>
+        <member name="E:Hzdtf.Utility.RemoteService.Provider.ServiceProviderAggReaderBase.GetAddressesed">
+            <summary>
+            获取到地址数组后事件
             </summary>
         </member>
         <member name="M:Hzdtf.Utility.RemoteService.Provider.ServiceProviderAggReaderBase.GetAddresses(System.String,System.String)">
@@ -7582,6 +7649,11 @@
         <member name="F:Hzdtf.Utility.RemoteService.Provider.ServiceProviderBase.actions">
             <summary>
             更新触发回调列表
+            </summary>
+        </member>
+        <member name="E:Hzdtf.Utility.RemoteService.Provider.ServiceProviderBase.GetAddressesed">
+            <summary>
+            获取到地址数组后事件
             </summary>
         </member>
         <member name="M:Hzdtf.Utility.RemoteService.Provider.ServiceProviderBase.GetAddresses(System.String,System.String)">
@@ -7668,6 +7740,11 @@
             缓存过期时间（单位：秒）
             </summary>
         </member>
+        <member name="E:Hzdtf.Utility.RemoteService.Provider.ServicesProviderMemory.GetAddressesed">
+            <summary>
+            获取到地址数组后事件
+            </summary>
+        </member>
         <member name="M:Hzdtf.Utility.RemoteService.Provider.ServicesProviderMemory.#ctor">
             <summary>
             构造方法
@@ -7721,6 +7798,11 @@
             <summary>
             统一服务生成配置
             @ 黄振东
+            </summary>
+        </member>
+        <member name="P:Hzdtf.Utility.RemoteService.UnitServiceBuilderOptions.Instance">
+            <summary>
+            实例
             </summary>
         </member>
         <member name="P:Hzdtf.Utility.RemoteService.UnitServiceBuilderOptions.ServicesOptions">
